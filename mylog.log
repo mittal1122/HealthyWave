@@ -12824,3 +12824,121 @@ org.hibernate.HibernateException: More than one row with the given identifier wa
 2022-09-02 16:47:07.291 DEBUG 80012 --- [http-nio-9996-exec-7] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
 2022-09-02 16:47:07.291 DEBUG 80012 --- [http-nio-9996-exec-7] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [com.bean.ResponseBean@5d9688de]
 2022-09-02 16:47:07.295 DEBUG 80012 --- [http-nio-9996-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2022-09-02 16:52:57.883  INFO 80012 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 5 class path changes (0 additions, 0 deletions, 5 modifications)
+2022-09-02 16:52:57.896  INFO 80012 --- [Thread-5] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-09-02 16:52:57.897  INFO 80012 --- [Thread-5] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2022-09-02 16:52:57.905  INFO 80012 --- [Thread-5] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-09-02 16:52:57.907  INFO 80012 --- [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-09-02 16:52:57.910  INFO 80012 --- [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-09-02 16:52:57.951  INFO 80012 --- [restartedMain] com.HealthyWaveApplication               : info :-> hey server is started? 
+2022-09-02 16:52:57.951 ERROR 80012 --- [restartedMain] com.HealthyWaveApplication               : error :-> port error found ..... Please correct....
+2022-09-02 16:52:57.976  INFO 80012 --- [restartedMain] com.HealthyWaveApplication               : Starting HealthyWaveApplication using Java 17.0.3 on DESKTOP-GMVU6NL with PID 80012 (D:\ISM\My Boot Angular Project\HealthyWave\target\classes started by vipul in D:\ISM\My Boot Angular Project\HealthyWave)
+2022-09-02 16:52:57.977  INFO 80012 --- [restartedMain] com.HealthyWaveApplication               : No active profile set, falling back to 1 default profile: "default"
+2022-09-02 16:52:58.357  INFO 80012 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-09-02 16:52:58.435  INFO 80012 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 78 ms. Found 11 JPA repository interfaces.
+2022-09-02 16:52:58.510  INFO 80012 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9996 (http)
+2022-09-02 16:52:58.511  INFO 80012 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-09-02 16:52:58.511  INFO 80012 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-09-02 16:52:58.527  INFO 80012 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-09-02 16:52:58.527  INFO 80012 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 548 ms
+2022-09-02 16:52:58.583  INFO 80012 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-09-02 16:52:58.588  INFO 80012 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2022-09-02 16:52:58.631  INFO 80012 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2022-09-02 16:52:58.632  INFO 80012 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2022-09-02 16:52:58.912  INFO 80012 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-09-02 16:52:58.912  INFO 80012 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-09-02 16:52:58.955  WARN 80012 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'bedController' defined in file [D:\ISM\My Boot Angular Project\HealthyWave\target\classes\com\controller\BedController.class]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.controller.BedController]: Constructor threw exception; nested exception is java.lang.Error: Unresolved compilation problems: 
+	The import com.repository.WardRepository cannot be resolved
+	WardRepository cannot be resolved to a type
+	WardRepository cannot be resolved to a type
+	WardRepository cannot be resolved to a type
+
+2022-09-02 16:52:58.955  INFO 80012 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-09-02 16:52:58.955  INFO 80012 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2022-09-02 16:52:58.963  INFO 80012 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+2022-09-02 16:52:58.964  INFO 80012 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-09-02 16:52:58.969  INFO 80012 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-09-02 16:52:58.985 ERROR 80012 --- [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'bedController' defined in file [D:\ISM\My Boot Angular Project\HealthyWave\target\classes\com\controller\BedController.class]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.controller.BedController]: Constructor threw exception; nested exception is java.lang.Error: Unresolved compilation problems: 
+	The import com.repository.WardRepository cannot be resolved
+	WardRepository cannot be resolved to a type
+	WardRepository cannot be resolved to a type
+	WardRepository cannot be resolved to a type
+
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1334) ~[spring-beans-5.3.22.jar:5.3.22]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1232) ~[spring-beans-5.3.22.jar:5.3.22]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582) ~[spring-beans-5.3.22.jar:5.3.22]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542) ~[spring-beans-5.3.22.jar:5.3.22]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335) ~[spring-beans-5.3.22.jar:5.3.22]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-5.3.22.jar:5.3.22]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333) ~[spring-beans-5.3.22.jar:5.3.22]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208) ~[spring-beans-5.3.22.jar:5.3.22]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955) ~[spring-beans-5.3.22.jar:5.3.22]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918) ~[spring-context-5.3.22.jar:5.3.22]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583) ~[spring-context-5.3.22.jar:5.3.22]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147) ~[spring-boot-2.7.3.jar:2.7.3]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:734) ~[spring-boot-2.7.3.jar:2.7.3]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408) ~[spring-boot-2.7.3.jar:2.7.3]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308) ~[spring-boot-2.7.3.jar:2.7.3]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306) ~[spring-boot-2.7.3.jar:2.7.3]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295) ~[spring-boot-2.7.3.jar:2.7.3]
+	at com.HealthyWaveApplication.main(HealthyWaveApplication.java:17) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49) ~[spring-boot-devtools-2.7.3.jar:2.7.3]
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.controller.BedController]: Constructor threw exception; nested exception is java.lang.Error: Unresolved compilation problems: 
+	The import com.repository.WardRepository cannot be resolved
+	WardRepository cannot be resolved to a type
+	WardRepository cannot be resolved to a type
+	WardRepository cannot be resolved to a type
+
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:224) ~[spring-beans-5.3.22.jar:5.3.22]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:87) ~[spring-beans-5.3.22.jar:5.3.22]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1326) ~[spring-beans-5.3.22.jar:5.3.22]
+	... 22 common frames omitted
+Caused by: java.lang.Error: Unresolved compilation problems: 
+	The import com.repository.WardRepository cannot be resolved
+	WardRepository cannot be resolved to a type
+	WardRepository cannot be resolved to a type
+	WardRepository cannot be resolved to a type
+
+	at com.controller.BedController.<init>(BedController.java:26) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[na:na]
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499) ~[na:na]
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480) ~[na:na]
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:211) ~[spring-beans-5.3.22.jar:5.3.22]
+	... 24 common frames omitted
+
+2022-09-02 16:54:59.954  INFO 80012 --- [restartedMain] com.HealthyWaveApplication               : info :-> hey server is started? 
+2022-09-02 16:54:59.954 ERROR 80012 --- [restartedMain] com.HealthyWaveApplication               : error :-> port error found ..... Please correct....
+2022-09-02 16:54:59.974  INFO 80012 --- [restartedMain] com.HealthyWaveApplication               : Starting HealthyWaveApplication using Java 17.0.3 on DESKTOP-GMVU6NL with PID 80012 (D:\ISM\My Boot Angular Project\HealthyWave\target\classes started by vipul in D:\ISM\My Boot Angular Project\HealthyWave)
+2022-09-02 16:54:59.974  INFO 80012 --- [restartedMain] com.HealthyWaveApplication               : No active profile set, falling back to 1 default profile: "default"
+2022-09-02 16:55:00.303  INFO 80012 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-09-02 16:55:00.393  INFO 80012 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 89 ms. Found 11 JPA repository interfaces.
+2022-09-02 16:55:00.448  INFO 80012 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9996 (http)
+2022-09-02 16:55:00.449  INFO 80012 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-09-02 16:55:00.449  INFO 80012 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-09-02 16:55:00.462  INFO 80012 --- [restartedMain] o.a.c.c.C.[Tomcat-1].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2022-09-02 16:55:00.462  INFO 80012 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 486 ms
+2022-09-02 16:55:00.495  INFO 80012 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-09-02 16:55:00.499  INFO 80012 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Starting...
+2022-09-02 16:55:00.540  INFO 80012 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Start completed.
+2022-09-02 16:55:00.541  INFO 80012 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2022-09-02 16:55:00.776  INFO 80012 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-09-02 16:55:00.777  INFO 80012 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-09-02 16:55:00.911  WARN 80012 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-09-02 16:55:00.965 DEBUG 80012 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2022-09-02 16:55:00.989 DEBUG 80012 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : 53 mappings in 'requestMappingHandlerMapping'
+2022-09-02 16:55:00.997 DEBUG 80012 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2022-09-02 16:55:01.003 DEBUG 80012 --- [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2022-09-02 16:55:01.059  INFO 80012 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-09-02 16:55:01.079  INFO 80012 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 9996 (http) with context path ''
+2022-09-02 16:55:01.086  INFO 80012 --- [restartedMain] com.HealthyWaveApplication               : Started HealthyWaveApplication in 1.128 seconds (JVM running for 781.988)
+2022-09-02 16:55:01.088  INFO 80012 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
