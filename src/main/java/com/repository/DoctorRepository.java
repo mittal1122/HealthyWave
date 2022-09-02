@@ -15,6 +15,6 @@ public interface DoctorRepository extends CrudRepository<DoctorBean, UUID>{
 //	List<DoctorBean> findByDoctorName(String docName);
 	
 
-	List<DoctorView> findByDoctorName(String docName);
+//	List<DoctorView> findByDoctorName(String docName);
 	
 }

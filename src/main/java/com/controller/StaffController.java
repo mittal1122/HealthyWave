@@ -56,13 +56,12 @@ public class StaffController {
 	@GetMapping("/staff")
 	public ResponseEntity<?> getAllStaff() {
 		List<StaffBean> staff = staffRepo.findAll();
+		ResponseBean<List<StaffBean>> res = new ResponseBean<>();
 		if (staff.size() != 0) {
-			ResponseBean<List<StaffBean>> res = new ResponseBean<>();
 			res.setData(staff);
 			res.setMsg("staff List...");
 			return ResponseEntity.status(HttpStatus.OK).body(res);
 		} else {
-			ResponseBean<List<StaffBean>> res = new ResponseBean<>();
 			res.setData(staff);
 			res.setMsg("staff List is Empty...");
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(res);
@@ -95,7 +94,7 @@ public class StaffController {
 			staffRepo.delete(bean);
 			ResponseBean<StaffBean> res = new ResponseBean<>();
 			res.setData(bean);
-			res.setMsg(bean.getStaffFirstName() + " deleted...");
+			res.setMsg(" deleted...");
 			return ResponseEntity.status(HttpStatus.OK).body(res);
 		} else {
 			ResponseBean<StaffBean> res = new ResponseBean<>();
@@ -106,7 +105,7 @@ public class StaffController {
 	}
 
 	@PutMapping("/staff")
-	public ResponseEntity<?> updaeStaff(@RequestBody @Valid StaffBean staffbean, BindingResult result) {
+	public ResponseEntity<?> updateStaff(@RequestBody @Valid StaffBean staffbean, BindingResult result) {
 		if (result.hasErrors()) {
 			ResponseBean<List<String>> res = new ResponseBean<>();
 			List<String> error = new ArrayList<>();
@@ -123,7 +122,7 @@ public class StaffController {
 			staffRepo.save(staffbean);
 			ResponseBean<StaffBean> res = new ResponseBean<>();
 			res.setData(staffbean);
-			res.setMsg(staffbean.getStaffFirstName() + " Updated...");
+			res.setMsg(" Updated...");
 			return ResponseEntity.status(HttpStatus.OK).body(res);
 		}
 	}
