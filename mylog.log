@@ -12942,6 +12942,7 @@ Caused by: java.lang.Error: Unresolved compilation problems:
 2022-09-02 16:55:01.079  INFO 80012 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 9996 (http) with context path ''
 2022-09-02 16:55:01.086  INFO 80012 --- [restartedMain] com.HealthyWaveApplication               : Started HealthyWaveApplication in 1.128 seconds (JVM running for 781.988)
 2022-09-02 16:55:01.088  INFO 80012 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+<<<<<<< HEAD
 2022-09-02 17:01:21.127  INFO 80012 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 3 class path changes (0 additions, 0 deletions, 3 modifications)
 2022-09-02 17:01:21.141  INFO 80012 --- [Thread-7] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
 2022-09-02 17:01:21.146  INFO 80012 --- [Thread-7] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
@@ -12952,3 +12953,5 @@ Caused by: java.lang.Error: Unresolved compilation problems:
 2022-09-02 17:01:21.233  INFO 80012 --- [restartedMain] com.HealthyWaveApplication               : Starting HealthyWaveApplication using Java 17.0.3 on DESKTOP-GMVU6NL with PID 80012 (D:\ISM\My Boot Angular Project\HealthyWave\target\classes started by vipul in D:\ISM\My Boot Angular Project\HealthyWave)
 2022-09-02 17:01:21.234  INFO 80012 --- [restartedMain] com.HealthyWaveApplication               : No active profile set, falling back to 1 default profile: "default"
 2022-09-02 17:01:21.654  INFO 80012 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+=======
+>>>>>>> master
