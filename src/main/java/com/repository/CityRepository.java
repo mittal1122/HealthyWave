@@ -19,6 +19,6 @@ public interface CityRepository extends CrudRepository<CityBean, UUID> {
 	@Query(value = "select * from city where state_id = :stateId", nativeQuery = true)
 	List<CityBean> findAllById(UUID stateId);
 	
-	
+	CityBean findByCityId(UUID cityId);
 
 }

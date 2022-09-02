@@ -51,4 +51,8 @@ public class PatientDocumentBean {
 	public void setPatient(PatientBean patient) {
 		this.patient = patient;
 	}
+
 }
+
+
+

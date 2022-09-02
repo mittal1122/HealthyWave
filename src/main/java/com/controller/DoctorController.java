@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bean.DoctorBean;
 import com.bean.ResponseBean;
 import com.bean.SpecializationBean;
+import com.bean.UserBean;
 import com.repository.DoctorRepository;
 //import com.repository.DoctorView;
 import com.repository.SpecializationRepository;
@@ -37,6 +38,7 @@ public class DoctorController {
 
 	@PostMapping("/doctor")
 	public ResponseEntity<?> addDoctor(@RequestBody @Valid DoctorBean bean, BindingResult result) {
+		System.out.println("Here at AddDoctor");
 		if (result.hasErrors()) {
 			ResponseBean<List<String>> res = new ResponseBean<>();
 			List<String> error = new ArrayList<>();
@@ -47,7 +49,7 @@ public class DoctorController {
 				error.add(addError);
 			}
 			res.setData(error);
-			res.setMsg("Detail Fill Properly");
+			res.setMsg("Fill Details Properly");
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(res);
 		} else {
 			SpecializationBean spbean = spRepo.findBySpecializationId(bean.getSpecialization().getSpecializationId());
@@ -63,21 +65,30 @@ public class DoctorController {
 	@GetMapping("/doctor")
 	public ResponseEntity<?> getAllDoctors() {
 		List<DoctorBean> doctor = doctorRepo.findAll();
+		System.out.println("AAAAAAAAAAAAAA");
+		System.out.println("doctor.get(0).getDoctorId()" + doctor.get(0).getDoctorId());
+		System.out.println("doctor.get(0).getSpecialization()" + doctor.get(0).getSpecialization().getSpcialization());
+		System.out.println("doctor.get(0).getUser().getFirstName()" + doctor.get(0).getUser().getFirstName());
+
 		if (doctor.size() != 0) {
-			ResponseBean<List<DoctorBean>> res = new ResponseBean<>();
-			res.setData(doctor);
+			System.out.println("BBBBBBBBBB");
+//			ResponseBean<SpecializationBean> res = new ResponseBean<>();
+//			res.setData(doctor.get(0).getSpecialization());
+			ResponseBean<UUID> res = new ResponseBean<>();
+			res.setData(doctor.get(0).getDoctorId());
 			res.setMsg("doctors List...");
 			return ResponseEntity.status(HttpStatus.OK).body(res);
 		} else {
+			System.out.println("DDDDDDDDDDDDDDDDDD");
 			ResponseBean<List<DoctorBean>> res = new ResponseBean<>();
 			res.setData(doctor);
 			res.setMsg("doctor List is Empty...");
+			System.out.println("EEEEEEEEEEEEEEEE");
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(res);
 		}
 
 	}
-	
-	
+
 //	@GetMapping("/doctorbyname/{name}")
 //	public ResponseEntity<?> getAllDoctorsByName(@PathVariable("name") String docName) {
 //		List<DoctorView> doctor = doctorRepo.findByDoctorName(docName);
@@ -95,6 +106,23 @@ public class DoctorController {
 //
 //	}
 
+//	@GetMapping("/doctorbyname/{name}")
+//	public ResponseEntity<?> getAllDoctorsByName(@PathVariable("name") String docName) {
+//		List<DoctorView> doctor = doctorRepo.findByDoctorName(docName);
+//		if (doctor.size() != 0) {
+//			ResponseBean<List<DoctorView>> res = new ResponseBean<>();
+//			res.setData(doctor);
+//			res.setMsg("Doctors List...");
+//			return ResponseEntity.status(HttpStatus.OK).body(res);
+//		} else {
+//			ResponseBean<List<DoctorView>> res = new ResponseBean<>();
+//			res.setData(doctor);
+//			res.setMsg("doctor List is Empty...");
+//			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(res);
+//		}
+//
+//	}
+
 	@GetMapping("/doctor/{doctorId}")
 	public ResponseEntity<?> getdoctorById(@PathVariable("doctorId") UUID doctorId) {
 		Optional<DoctorBean> doctor = doctorRepo.findById(doctorId);
@@ -102,7 +130,7 @@ public class DoctorController {
 			DoctorBean bean = doctor.get();
 			ResponseBean<DoctorBean> res = new ResponseBean<>();
 			res.setData(bean);
-			res.setMsg("Doctors List...");
+			res.setMsg("Doctor Details...");
 			return ResponseEntity.status(HttpStatus.OK).body(res);
 		} else {
 			ResponseBean<DoctorBean> res = new ResponseBean<>();
@@ -131,7 +159,7 @@ public class DoctorController {
 	}
 
 	@PutMapping("/doctor")
-	public ResponseEntity<?> updaeDoctor(@RequestBody @Valid DoctorBean doctorbean, BindingResult result) {
+	public ResponseEntity<?> updateDoctor(@RequestBody @Valid DoctorBean doctorbean, BindingResult result) {
 		if (result.hasErrors()) {
 			ResponseBean<List<String>> res = new ResponseBean<>();
 			List<String> error = new ArrayList<>();

@@ -1,5 +1,6 @@
 package com.bean;
 
+import java.util.Set;
 import java.util.UUID;
 
 import javax.persistence.Entity;
@@ -8,10 +9,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name="city")
 public class CityBean {
@@ -21,6 +24,15 @@ public class CityBean {
 	private UUID cityId;
 	@NotBlank(message = "plese enter cityName")
 	private String cityName;
+	@ManyToOne
+	@JoinColumn(name="stateId",nullable=false)
+//	@NotNull(message = "Please Select State")
+	private StateBean state;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "city")
+	private Set<PatientBean> patient;
+
 	public UUID getCityId() {
 		return cityId;
 	}
@@ -39,8 +51,4 @@ public class CityBean {
 	public void setState(StateBean state) {
 		this.state = state;
 	}
-	@ManyToOne
-	@JoinColumn(name="stateId",nullable=false)
-//	@NotNull(message = "Plese Select State")
-	private StateBean state;
 }

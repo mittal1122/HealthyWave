@@ -23,9 +23,9 @@ public class RoleBean {
 	@Column(length = 15,nullable = false,unique = true)
 	private String roleName;
 	
-//	@JsonIgnore
-//	@OneToMany(mappedBy = "role")
-//	private Set<UserBean> users;
+	@JsonIgnore
+	@OneToMany(mappedBy = "role")
+	private Set<UserBean> users;
 	
 	public String getRoleName() {
 		return roleName;

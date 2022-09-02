@@ -50,7 +50,7 @@ public class CityController {
 			res.setMsg("Detail Fill Properly");
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(res);
 		} else {
-			StateBean stateBean = stateRepo.findBystateId(cityBean.getState().getStateId());
+			StateBean stateBean = stateRepo.findByStateId(cityBean.getState().getStateId());
 			cityBean.setState(stateBean);
 			cityRepo.save(cityBean);
 			ResponseBean<CityBean> res = new ResponseBean<>();
@@ -105,7 +105,7 @@ public class CityController {
 			cityRepo.deleteById(cityId);
 			CityBean bean = city.get();
 			res.setData(city);
-			res.setMsg(bean.getCityName() + " deleted " + " From " + bean.getState().getStateName() + " SuccesFully");
+			res.setMsg(bean.getCityName() + " deleted From " + bean.getState().getStateName() + " SuccesFully");
 			return ResponseEntity.status(HttpStatus.OK).body(res);
 		} else {
 			res.setMsg("City is not Found");
@@ -131,7 +131,7 @@ public class CityController {
 				res.setMsg("Detail Fill Properly");
 				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(res);
 			} else {
-				StateBean stateBean = stateRepo.findBystateId(citybean.getState().getStateId());
+				StateBean stateBean = stateRepo.findByStateId(citybean.getState().getStateId());
 				citybean.setState(stateBean);
 				cityRepo.save(citybean);
 				CityBean bean = city.get();

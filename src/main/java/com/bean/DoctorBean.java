@@ -14,6 +14,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.OneToMany;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "doctor")
@@ -27,10 +29,23 @@ public class DoctorBean {
     @JoinColumn(name = "userId", nullable = false)
     private UserBean user;
 
+	public Set<PatientBean> getPatient() {
+		return patient;
+	}
+
+	public void setPatient(Set<PatientBean> patient) {
+		this.patient = patient;
+	}
+
 	@ManyToOne
 	@JoinColumn(name = "specializationId", nullable = false)
 	private SpecializationBean specialization;
-
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "doctor")
+	private Set<PatientBean> patient;
+	
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "ward_doctor", joinColumns = @JoinColumn(name = "doctorId"), inverseJoinColumns = @JoinColumn(name = "wardId"))
 	private Set<WardBean> wards;

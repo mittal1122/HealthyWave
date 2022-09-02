@@ -13,6 +13,8 @@ import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="specialization")
 public class SpecializationBean {
@@ -22,6 +24,7 @@ public class SpecializationBean {
 	private UUID specializationId;
 	@NotBlank(message = "Plese Enter Specialization")
 	private String spcialization;
+	@JsonIgnore
 	@OneToMany(mappedBy ="specialization")
 	private Set<DoctorBean> doctor = new HashSet<DoctorBean>();
 	public UUID getSpecializationId() {

@@ -18,7 +18,7 @@ import com.bean.RoleBean;
 import com.bean.UserBean;
 import com.repository.RoleRepository;
 import com.repository.UserRepository;
-import com.service.TokenService;
+//import com.service.TokenService;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -36,8 +36,8 @@ public class SessionController {
 	@Autowired
 	BCryptPasswordEncoder bcrypt;
 
-	@Autowired
-	TokenService tokenService;
+//	@Autowired
+//	TokenService tokenService;
 
 	@PostMapping("/signup")
 	public ResponseEntity<?> signup(@RequestBody UserBean user) {
@@ -85,7 +85,7 @@ public class SessionController {
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(res);
 	
 		}else {
-			dbUser.setAuthToken(tokenService.generateToken(16));
+//			dbUser.setAuthToken(tokenService.generateToken(16));
 			userRepo.save(dbUser);
 			
 			ResponseBean<UserBean> res = new ResponseBean<>();
