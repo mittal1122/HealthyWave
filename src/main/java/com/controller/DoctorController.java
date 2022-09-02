@@ -38,6 +38,7 @@ public class DoctorController {
 
 	@PostMapping("/doctor")
 	public ResponseEntity<?> addDoctor(@RequestBody @Valid DoctorBean bean, BindingResult result) {
+		System.out.println("Here at AddDoctor");
 		if (result.hasErrors()) {
 			ResponseBean<List<String>> res = new ResponseBean<>();
 			List<String> error = new ArrayList<>();
@@ -48,7 +49,7 @@ public class DoctorController {
 				error.add(addError);
 			}
 			res.setData(error);
-			res.setMsg("Detail Fill Properly");
+			res.setMsg("Fill Details Properly");
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(res);
 		} else {
 			SpecializationBean spbean = spRepo.findBySpecializationId(bean.getSpecialization().getSpecializationId());
@@ -85,7 +86,7 @@ public class DoctorController {
 		if (doctor.size() != 0) {
 			ResponseBean<List<DoctorView>> res = new ResponseBean<>();
 			res.setData(doctor);
-			res.setMsg("doctors List...");
+			res.setMsg("Doctors List...");
 			return ResponseEntity.status(HttpStatus.OK).body(res);
 		} else {
 			ResponseBean<List<DoctorView>> res = new ResponseBean<>();
@@ -103,7 +104,7 @@ public class DoctorController {
 			DoctorBean bean = doctor.get();
 			ResponseBean<DoctorBean> res = new ResponseBean<>();
 			res.setData(bean);
-			res.setMsg("Doctors List...");
+			res.setMsg("Doctor Details...");
 			return ResponseEntity.status(HttpStatus.OK).body(res);
 		} else {
 			ResponseBean<DoctorBean> res = new ResponseBean<>();
@@ -132,7 +133,7 @@ public class DoctorController {
 	}
 
 	@PutMapping("/doctor")
-	public ResponseEntity<?> updaeDoctor(@RequestBody @Valid DoctorBean doctorbean, BindingResult result) {
+	public ResponseEntity<?> updateDoctor(@RequestBody @Valid DoctorBean doctorbean, BindingResult result) {
 		if (result.hasErrors()) {
 			ResponseBean<List<String>> res = new ResponseBean<>();
 			List<String> error = new ArrayList<>();

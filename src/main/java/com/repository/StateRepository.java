@@ -11,5 +11,6 @@ import com.bean.StateBean;
 public interface StateRepository extends CrudRepository<StateBean, UUID>{
 
 	List<StateBean> findAll();
-	StateBean findBystateId(UUID stateId );
+	StateBean findByStateId(UUID stateId);
+	
 }

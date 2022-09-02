@@ -106,7 +106,7 @@ public class StaffController {
 	}
 
 	@PutMapping("/staff")
-	public ResponseEntity<?> updaeStaff(@RequestBody @Valid StaffBean staffbean, BindingResult result) {
+	public ResponseEntity<?> updateStaff(@RequestBody @Valid StaffBean staffbean, BindingResult result) {
 		if (result.hasErrors()) {
 			ResponseBean<List<String>> res = new ResponseBean<>();
 			List<String> error = new ArrayList<>();

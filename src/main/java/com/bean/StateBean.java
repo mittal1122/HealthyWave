@@ -27,7 +27,9 @@ public class StateBean {
 	@JsonIgnore
 	@OneToMany(mappedBy = "state")
 	private Set<CityBean> city = new HashSet<CityBean>();
-	
+	@JsonIgnore
+	@OneToMany(mappedBy = "state")
+	private Set<PatientBean> patient = new HashSet<PatientBean>();
 	
 	public UUID getStateId() {
 		return stateId;

@@ -11,9 +11,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.NotBlank;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "doctor")
@@ -33,6 +36,10 @@ public class DoctorBean {
 	@ManyToOne
 	@JoinColumn(name="specializationId" ,nullable = false)
 	private SpecializationBean specialization;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "doctor")
+	private Set<PatientBean> patient;
 	
 	@ManyToMany
 	@JoinTable(name="ward_doctor",joinColumns = @JoinColumn(name="doctorId"), inverseJoinColumns = @JoinColumn(name="wardId"))
