@@ -12916,3 +12916,29 @@ Caused by: java.lang.Error: Unresolved compilation problems:
 	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:211) ~[spring-beans-5.3.22.jar:5.3.22]
 	... 24 common frames omitted
 
+2022-09-02 16:54:59.954  INFO 80012 --- [restartedMain] com.HealthyWaveApplication               : info :-> hey server is started? 
+2022-09-02 16:54:59.954 ERROR 80012 --- [restartedMain] com.HealthyWaveApplication               : error :-> port error found ..... Please correct....
+2022-09-02 16:54:59.974  INFO 80012 --- [restartedMain] com.HealthyWaveApplication               : Starting HealthyWaveApplication using Java 17.0.3 on DESKTOP-GMVU6NL with PID 80012 (D:\ISM\My Boot Angular Project\HealthyWave\target\classes started by vipul in D:\ISM\My Boot Angular Project\HealthyWave)
+2022-09-02 16:54:59.974  INFO 80012 --- [restartedMain] com.HealthyWaveApplication               : No active profile set, falling back to 1 default profile: "default"
+2022-09-02 16:55:00.303  INFO 80012 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-09-02 16:55:00.393  INFO 80012 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 89 ms. Found 11 JPA repository interfaces.
+2022-09-02 16:55:00.448  INFO 80012 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9996 (http)
+2022-09-02 16:55:00.449  INFO 80012 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-09-02 16:55:00.449  INFO 80012 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-09-02 16:55:00.462  INFO 80012 --- [restartedMain] o.a.c.c.C.[Tomcat-1].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2022-09-02 16:55:00.462  INFO 80012 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 486 ms
+2022-09-02 16:55:00.495  INFO 80012 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-09-02 16:55:00.499  INFO 80012 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Starting...
+2022-09-02 16:55:00.540  INFO 80012 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Start completed.
+2022-09-02 16:55:00.541  INFO 80012 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2022-09-02 16:55:00.776  INFO 80012 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-09-02 16:55:00.777  INFO 80012 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-09-02 16:55:00.911  WARN 80012 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-09-02 16:55:00.965 DEBUG 80012 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2022-09-02 16:55:00.989 DEBUG 80012 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : 53 mappings in 'requestMappingHandlerMapping'
+2022-09-02 16:55:00.997 DEBUG 80012 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2022-09-02 16:55:01.003 DEBUG 80012 --- [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2022-09-02 16:55:01.059  INFO 80012 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-09-02 16:55:01.079  INFO 80012 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 9996 (http) with context path ''
+2022-09-02 16:55:01.086  INFO 80012 --- [restartedMain] com.HealthyWaveApplication               : Started HealthyWaveApplication in 1.128 seconds (JVM running for 781.988)
+2022-09-02 16:55:01.088  INFO 80012 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
