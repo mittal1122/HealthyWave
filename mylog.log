@@ -280,3 +280,11 @@
 2022-09-03 09:53:57.725 DEBUG 11284 --- [http-nio-9996-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
 2022-09-03 09:53:57.725 DEBUG 11284 --- [http-nio-9996-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [com.bean.PatientBean@2b94e71f]
 2022-09-03 09:53:57.762 DEBUG 11284 --- [http-nio-9996-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2022-09-03 11:39:41.242  INFO 11284 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2022-09-03 11:39:41.334  INFO 11284 --- [Thread-23] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-09-03 11:39:41.340  INFO 11284 --- [Thread-23] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2022-09-03 11:39:41.455  INFO 11284 --- [Thread-23] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-09-03 11:39:41.468  INFO 11284 --- [Thread-23] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Shutdown initiated...
+2022-09-03 11:39:41.476  INFO 11284 --- [Thread-23] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Shutdown completed.
+2022-09-03 11:39:41.893  INFO 11284 --- [restartedMain] com.HealthyWaveApplication               : info :-> hey server is started? 
+2022-09-03 11:39:41.893 ERROR 11284 --- [restartedMain] com.HealthyWaveApplication               : error :-> port error found ..... Please correct....
