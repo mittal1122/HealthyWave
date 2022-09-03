@@ -21,13 +21,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bean.ResponseBean;
 import com.bean.WardBean;
-import com.repository.WardRepository;
+import com.repository.wardRepository;
 
 @RestController
 public class WardController {
 
 	@Autowired
-	WardRepository wardRepo;
+	wardRepository wardRepo;
 	
 	@PostMapping("/ward")
 	public ResponseEntity<?> addBed(@RequestBody @Valid WardBean wardBean,BindingResult result){
