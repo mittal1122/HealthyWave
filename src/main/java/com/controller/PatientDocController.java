@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bean.PatientBean;
 import com.bean.PatientDocumentBean;
 import com.bean.ResponseBean;
 import com.repository.PatientDocRepository;
+import com.repository.PatientRepository;
 
 @RestController
 public class PatientDocController {
@@ -25,10 +27,18 @@ public class PatientDocController {
 	@Autowired
 	PatientDocRepository patientDocRepo;
 	
+	@Autowired
+	PatientRepository patientRepo;
+	
 	@PostMapping("/patientDocument")
 	public ResponseEntity<?> addPDoc(@RequestBody PatientDocumentBean patientDocBean){
-		ResponseBean<PatientDocumentBean> resp = new ResponseBean<>();
+//		System.out.println("document : " + patientDocBean.getDocument()+" PatientId : "+patientDocBean.getPatient().getPatientId());
+		PatientBean patientBean = patientRepo.findByPatientId(patientDocBean.getPatient().getPatientId());
+		patientDocBean.setPatient(patientBean);
 		patientDocRepo.save(patientDocBean);
+		ResponseBean<PatientDocumentBean> resp = new ResponseBean<>();
+		resp.setData(patientDocBean);
+		resp.setMsg("Document Added...");
 		return ResponseEntity.status(HttpStatus.OK).body(resp);
 	}
 	@GetMapping("/patientDocument")

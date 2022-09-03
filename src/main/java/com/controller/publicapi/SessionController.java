@@ -60,9 +60,10 @@ public class SessionController {
 			} else {
 				user.setRole(role);
 				user.setPassword(bcrypt.encode(user.getPassword()));
+				user.setIsApprove(false);
 				userRepo.save(user);
 				res.setData(user);
-				res.setMsg("Signup Successfuly...");
+				res.setMsg("Signup Done! wait for approval from Admin...");
 				return ResponseEntity.ok(res);
 			}
 //			}else {
@@ -70,11 +71,9 @@ public class SessionController {
 //				return ResponseEntity.status(HttpStatus.NOT_FOUND).body(res);
 //			}
 		} else {
-			res.setData(user);
 			res.setMsg("Email Already Taken");
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(res); // ResponseBean Object
 		}
-
 	}
 
 	@PostMapping("/login")
@@ -98,8 +97,12 @@ public class SessionController {
 			ResponseBean<UserBean> res = new ResponseBean<>();
 			res.setData(dbUser);
 			res.setMsg("Login Successfuly");
+<<<<<<< HEAD
 			log.info(dbUser.getFirstName() + "Login Successfuly");
 
+=======
+			log.info(dbUser.getFirstName()+" Login Successfuly");
+>>>>>>> 4c84abd067db4adf1147fae1fb1e5293f7b22c39
 			return ResponseEntity.status(HttpStatus.OK).body(res);
 		}
 	}

@@ -10,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -20,12 +21,12 @@ public class PatientDocumentBean {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID documentId;
 	private String document;
-	@JsonIgnore
+	
+	@JsonBackReference
+//	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "patientId",nullable = false)
 	private PatientBean patient;
-	
-	
 	
 	public UUID getDocumentId() {
 		return documentId;
@@ -39,12 +40,6 @@ public class PatientDocumentBean {
 	public void setDocument(String document) {
 		this.document = document;
 	}
-	public PatientBean getPatientId() {
-		return patient;
-	}
-	public void setPatientId(PatientBean patientId) {
-		this.patient = patientId;
-	}	
 	public PatientBean getPatient() {
 		return patient;
 	}

@@ -23,6 +23,7 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "patient")
@@ -82,6 +83,7 @@ public class PatientBean {
 	@NotBlank(message = "Please Select Patient Status")
 	private String patientStatus;
 	
+//	@JsonIgnore
 	@OneToMany(mappedBy = "patient")
 	private Set<PatientDocumentBean> patientDocument;
 	

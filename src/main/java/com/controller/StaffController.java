@@ -19,18 +19,25 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bean.DoctorBean;
 import com.bean.ResponseBean;
+import com.bean.SpecializationBean;
 import com.bean.StaffBean;
+import com.bean.UserBean;
 import com.repository.StaffRepository;
+import com.repository.UserRepository;
 
 @RestController
 public class StaffController {
 
 	@Autowired
 	StaffRepository staffRepo;
+	
+	@Autowired
+	UserRepository userRepo;
 
 	@PostMapping("/staff")
-	public ResponseEntity<?> addStaff(@RequestBody @Valid StaffBean staffbean, BindingResult result) {
+	public ResponseEntity<?> addStaff(@RequestBody @Valid StaffBean staffBean, BindingResult result) {
 		if (result.hasErrors()) {
 			ResponseBean<List<String>> res = new ResponseBean<>();
 			List<String> error = new ArrayList<>();
@@ -45,11 +52,20 @@ public class StaffController {
 			res.setMsg("Detail Fill Properly");
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(res);
 		} else {
-			staffRepo.save(staffbean);
+			UserBean user = userRepo.findByUserId(staffBean.getUser().getUserId());
 			ResponseBean<StaffBean> res = new ResponseBean<>();
-			res.setData(staffbean);
-			res.setMsg("staff added...");
-			return ResponseEntity.status(HttpStatus.OK).body(res);
+			if(user != null && user.getRole().getRoleName().equals("staff") && user.getIsApprove()==true) {
+				staffBean.setUser(user);
+				staffBean.setStatus(true);
+				staffRepo.save(staffBean);				
+				res.setData(staffBean);
+				res.setMsg("Staff Added...");
+				return ResponseEntity.status(HttpStatus.OK).body(res);
+			}
+			else {
+				res.setMsg("Staff not Approved");
+				return ResponseEntity.status(HttpStatus.OK).body(res);
+			}
 		}
 	}
 
@@ -119,10 +135,10 @@ public class StaffController {
 			res.setMsg("Detail Fill Properly");
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(res);
 		} else {
-			staffRepo.save(staffbean);
+			userRepo.save(staffbean.getUser());
 			ResponseBean<StaffBean> res = new ResponseBean<>();
 			res.setData(staffbean);
-			res.setMsg(" Updated...");
+			res.setMsg("Staff Details Updated...");
 			return ResponseEntity.status(HttpStatus.OK).body(res);
 		}
 	}

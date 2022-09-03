@@ -27,6 +27,22 @@ public class UserBean {
 	private String email;
 	private String password;
 	private String contactNum;
+<<<<<<< HEAD
+=======
+	
+	@ManyToOne
+	@JoinColumn(name = "roleId", nullable = false)
+	private RoleBean role;
+	
+	public String getContactNum() {
+		return contactNum;
+	}
+
+	public void setContactNum(String contactNum) {
+		this.contactNum = contactNum;
+	}
+
+>>>>>>> 4c84abd067db4adf1147fae1fb1e5293f7b22c39
 	private String gender;
 	private Boolean isApprove;
 	private String authToken;

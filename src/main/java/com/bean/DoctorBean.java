@@ -24,18 +24,11 @@ public class DoctorBean {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID doctorId;
+	private Boolean status;
 
 	@OneToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "userId", nullable = false)
     private UserBean user;
-
-	public Set<PatientBean> getPatient() {
-		return patient;
-	}
-
-	public void setPatient(Set<PatientBean> patient) {
-		this.patient = patient;
-	}
 
 	@ManyToOne
 	@JoinColumn(name = "specializationId", nullable = false)
@@ -58,6 +51,14 @@ public class DoctorBean {
 		this.doctorId = doctorId;
 	}
 
+	public Boolean getStatus() {
+		return status;
+	}
+
+	public void setStatus(Boolean status) {
+		this.status = status;
+	}
+
 	public SpecializationBean getSpecialization() {
 		return specialization;
 	}
@@ -73,6 +74,14 @@ public class DoctorBean {
 	public void setUser(UserBean user) {
 		this.user = user;
 	}
+	
+	public Set<PatientBean> getPatient() {
+		return patient;
+	}
+
+	public void setPatient(Set<PatientBean> patient) {
+		this.patient = patient;
+	}
 
 	public Set<WardBean> getWards() {
 		return wards;
@@ -81,5 +90,6 @@ public class DoctorBean {
 	public void setWards(Set<WardBean> wards) {
 		this.wards = wards;
 	}
+	
 	
 }

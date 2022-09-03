@@ -20,9 +20,8 @@ public class StaffBean {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID staffId;
-	@OneToOne(fetch = FetchType.LAZY, optional = false)
+	@OneToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "userId", nullable = false)
-	@NotBlank(message = "Enter staff details")
 	private UserBean user;
 	private Boolean status;
 	

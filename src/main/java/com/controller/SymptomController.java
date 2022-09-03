@@ -36,7 +36,7 @@ public class SymptomController {
 			List<String> errors = new ArrayList<>();
 			for(int i=0;i<result.getErrorCount();i++) {
 				String error = result.getFieldErrors().get(i).getDefaultMessage();
-				System.out.println("============== Error ============== " + error);
+				System.out.println("============= Error ============= " + error);
 				errors.add(error);
 			}
 			resp.setData(errors);

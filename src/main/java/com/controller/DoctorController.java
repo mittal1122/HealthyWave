@@ -26,6 +26,7 @@ import com.bean.UserBean;
 import com.repository.DoctorRepository;
 //import com.repository.DoctorView;
 import com.repository.SpecializationRepository;
+import com.repository.UserRepository;
 
 @RestController
 public class DoctorController {
@@ -35,6 +36,9 @@ public class DoctorController {
 
 	@Autowired
 	SpecializationRepository spRepo;
+	
+	@Autowired
+	UserRepository userRepo;
 
 	@PostMapping("/doctor")
 	public ResponseEntity<?> addDoctor(@RequestBody @Valid DoctorBean bean, BindingResult result) {
@@ -52,13 +56,24 @@ public class DoctorController {
 			res.setMsg("Fill Details Properly");
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(res);
 		} else {
+			UserBean user = userRepo.findByUserId(bean.getUser().getUserId());
 			SpecializationBean spbean = spRepo.findBySpecializationId(bean.getSpecialization().getSpecializationId());
-			bean.setSpecialization(spbean);
-			doctorRepo.save(bean);
 			ResponseBean<DoctorBean> res = new ResponseBean<>();
-			res.setData(bean);
-			res.setMsg("Doctor added..");
-			return ResponseEntity.status(HttpStatus.OK).body(res);
+			System.out.println(user + " "+user.getRole().getRoleName().equals("doctor") + " " +user.getIsApprove() );
+			if(user != null && user.getRole().getRoleName().equals("doctor") && user.getIsApprove()==true && spbean != null) {
+				bean.setSpecialization(spbean);System.out.println("DOCTOR ADD : " + bean+" UID : " + bean.getUser().getUserId()+"SPEC : "+spbean.getSpcialization()+"SPECID : "+spbean.getSpecializationId());
+				bean.setUser(user);
+				bean.setStatus(true);
+				doctorRepo.save(bean);				
+				res.setData(bean);
+				res.setMsg("Doctor added..");
+				return ResponseEntity.status(HttpStatus.OK).body(res);
+			}
+			else {
+				res.setMsg("Doctor not Approved");
+				return ResponseEntity.status(HttpStatus.OK).body(res);
+			}
+			
 		}
 	}
 
@@ -161,10 +176,10 @@ public class DoctorController {
 			SpecializationBean spbean = spRepo
 					.findBySpecializationId(doctorbean.getSpecialization().getSpecializationId());
 			doctorbean.setSpecialization(spbean);
-			doctorRepo.save(doctorbean);
+			userRepo.save(doctorbean.getUser());
 			ResponseBean<DoctorBean> res = new ResponseBean<>();
 			res.setData(doctorbean);
-			res.setMsg(doctorbean.getUser().getFirstName() + " Updated...");
+			res.setMsg("Doctor " + doctorbean.getUser().getFirstName() + "'s Details Updated...");
 			return ResponseEntity.status(HttpStatus.OK).body(res);
 		}
 	}

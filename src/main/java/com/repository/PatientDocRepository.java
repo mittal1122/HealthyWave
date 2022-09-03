@@ -14,8 +14,5 @@ public interface PatientDocRepository extends CrudRepository<PatientDocumentBean
 	
 	@Query(value = "select * from patientdocument where patient_id = :patientId",nativeQuery = true)
 	List<PatientDocumentBean> findByPatientId(UUID patientId);
-//<<<<<<< HEAD
+
 }
-//=======
-//}
-//>>>>>>> a0ab0192b49e1b9339fd9d62232d082b18a821ce
