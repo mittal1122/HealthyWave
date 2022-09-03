@@ -74,8 +74,8 @@ public class DoctorController {
 			System.out.println("BBBBBBBBBB");
 //			ResponseBean<SpecializationBean> res = new ResponseBean<>();
 //			res.setData(doctor.get(0).getSpecialization());
-			ResponseBean<UUID> res = new ResponseBean<>();
-			res.setData(doctor.get(0).getDoctorId());
+			ResponseBean<List<DoctorBean>> res = new ResponseBean<>();
+			res.setData(doctor);
 			res.setMsg("doctors List...");
 			return ResponseEntity.status(HttpStatus.OK).body(res);
 		} else {

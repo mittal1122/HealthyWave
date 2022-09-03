@@ -6,18 +6,19 @@ import java.util.UUID;
 public class PatientSymptomBean {
 
 	private UUID patientId;
-	private List<UUID> symptomId;
+	private List<UUID> symptom;
 	public UUID getPatientId() {
 		return patientId;
 	}
 	public void setPatientId(UUID patientId) {
 		this.patientId = patientId;
 	}
-	public List<UUID> getSymptomId() {
-		return symptomId;
+	public List<UUID> getSymptom() {
+		return symptom;
 	}
-	public void setSymptomId(List<UUID> symptomId) {
-		this.symptomId = symptomId;
+	public void setSymptom(List<UUID> symptom) {
+		this.symptom = symptom;
 	}
+	
 	
 }

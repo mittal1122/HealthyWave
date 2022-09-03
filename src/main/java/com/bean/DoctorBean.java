@@ -25,7 +25,7 @@ public class DoctorBean {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID doctorId;
 
-	@OneToOne(fetch = FetchType.LAZY, optional = false)
+	@OneToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "userId", nullable = false)
     private UserBean user;
 

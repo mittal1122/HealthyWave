@@ -34,15 +34,15 @@ public class PatientSymptomController {
 	PatientBean patientBean = patientRepo.findByPatientId(psBean.getPatientId());
 	System.out.println("patientBean : "+patientBean);
 	if (patientBean != null) {
-		for (int i = 0; i < psBean.getSymptomId().size(); i++) {
-			SymptomBean symptomBean = symptomRepo.findBySymptomId(psBean.getSymptomId().get(i));
+		for (int i = 0; i < psBean.getSymptom().size(); i++) {
+			SymptomBean symptomBean = symptomRepo.findBySymptomId(psBean.getSymptom().get(i));
 			System.out.println("symptomBean : "+symptomBean);
 			if(symptomBean!=null) {					
 				patientBean.getSymptoms().add(symptomBean);
 				patientRepo.save(patientBean);
 			}else {
 				List<UUID> nullUser = new ArrayList<UUID>() ;
-				nullUser.add(psBean.getSymptomId().get(i));
+				nullUser.add(psBean.getSymptom().get(i));
 				
 			}
 		}
