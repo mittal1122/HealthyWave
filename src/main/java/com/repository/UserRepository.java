@@ -15,4 +15,6 @@ public interface UserRepository extends CrudRepository<UserBean, Integer> {
 	@Query(value ="select * from users where auth_token = :authToken",nativeQuery = true)
 	UserBean findByAuthToken(String authToken);
 	
+	UserBean findByOtp(Integer otp);
+	
 }

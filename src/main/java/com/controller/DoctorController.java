@@ -106,22 +106,7 @@ public class DoctorController {
 //
 //	}
 
-//	@GetMapping("/doctorbyname/{name}")
-//	public ResponseEntity<?> getAllDoctorsByName(@PathVariable("name") String docName) {
-//		List<DoctorView> doctor = doctorRepo.findByDoctorName(docName);
-//		if (doctor.size() != 0) {
-//			ResponseBean<List<DoctorView>> res = new ResponseBean<>();
-//			res.setData(doctor);
-//			res.setMsg("Doctors List...");
-//			return ResponseEntity.status(HttpStatus.OK).body(res);
-//		} else {
-//			ResponseBean<List<DoctorView>> res = new ResponseBean<>();
-//			res.setData(doctor);
-//			res.setMsg("doctor List is Empty...");
-//			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(res);
-//		}
-//
-//	}
+
 
 	@GetMapping("/doctor/{doctorId}")
 	public ResponseEntity<?> getdoctorById(@PathVariable("doctorId") UUID doctorId) {

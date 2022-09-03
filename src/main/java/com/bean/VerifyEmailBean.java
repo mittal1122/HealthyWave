@@ -1,6 +1,6 @@
 package com.bean;
 
-public class OnlyEmailBean {
+public class VerifyEmailBean {
 
 	private String email;
 

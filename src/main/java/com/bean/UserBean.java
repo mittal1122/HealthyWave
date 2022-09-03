@@ -27,14 +27,6 @@ public class UserBean {
 	private String email;
 	private String password;
 	private String contactNum;
-	public String getContactNum() {
-		return contactNum;
-	}
-
-	public void setContactNum(String contactNum) {
-		this.contactNum = contactNum;
-	}
-
 	private String gender;
 	private Boolean isApprove;
 	private String authToken;
@@ -45,6 +37,36 @@ public class UserBean {
 	
 	@OneToOne(mappedBy = "user")
 	private StaffBean staff;
+
+	@ManyToOne
+	@JoinColumn(name = "roleId", nullable = false)
+	private RoleBean role;
+
+	private Integer otp;
+	
+	public StaffBean getStaff() {
+		return staff;
+	}
+
+	public void setStaff(StaffBean staff) {
+		this.staff = staff;
+	}
+
+	public Integer getOtp() {
+		return otp;
+	}
+
+	public void setOtp(Integer otp) {
+		this.otp = otp;
+	}
+
+	public String getContactNum() {
+		return contactNum;
+	}
+
+	public void setContactNum(String contactNum) {
+		this.contactNum = contactNum;
+	}
 
 	public DoctorBean getDoctor() {
 		return doctor;
@@ -85,10 +107,6 @@ public class UserBean {
 	public void setIsApprove(Boolean isApprove) {
 		this.isApprove = isApprove;
 	}
-
-	@ManyToOne
-	@JoinColumn(name = "roleId", nullable = false)
-	private RoleBean role;
 
 	public UUID getUserId() {
 		return userId;
