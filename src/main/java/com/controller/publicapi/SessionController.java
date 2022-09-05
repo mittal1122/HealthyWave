@@ -20,6 +20,7 @@ import com.repository.UserRepository;
 import com.service.EmailService;
 //import com.service.TokenService;
 import com.service.OtpGenerateService;
+import com.service.TokenService;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -37,8 +38,8 @@ public class SessionController {
 	@Autowired
 	BCryptPasswordEncoder bcrypt;
 
-//	@Autowired
-//	TokenService tokenService;
+	@Autowired
+	TokenService tokenService;
 
 	@Autowired
 	OtpGenerateService otpService;
@@ -78,8 +79,10 @@ public class SessionController {
 
 	@PostMapping("/login")
 	public ResponseEntity<?> authenticate(@RequestBody LoginBean login) {
+		
 		UserBean dbUser = userRepo.findByEmail(login.getEmail());
 		if (dbUser == null || !bcrypt.matches(login.getPassword(), dbUser.getPassword())) {
+			log.info("dbUser null in login");
 			ResponseBean<LoginBean> res = new ResponseBean<>();
 			res.setData(login);
 			res.setMsg("Invalid Credentials");
@@ -91,18 +94,14 @@ public class SessionController {
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(res);
 
 		} else {
-//			dbUser.setAuthToken(tokenService.generateToken(16));
+			dbUser.setAuthToken(tokenService.generateToken(16));
 			userRepo.save(dbUser);
 
 			ResponseBean<UserBean> res = new ResponseBean<>();
 			res.setData(dbUser);
 			res.setMsg("Login Successfuly");
-<<<<<<< HEAD
-			log.info(dbUser.getFirstName() + "Login Successfuly");
-
-=======
-			log.info(dbUser.getFirstName()+" Login Successfuly");
->>>>>>> 4c84abd067db4adf1147fae1fb1e5293f7b22c39
+			log.info(dbUser.getFirstName() + " Login Successfuly");
+			log.info(dbUser.getAuthToken()+" Login Successfuly");
 			return ResponseEntity.status(HttpStatus.OK).body(res);
 		}
 	}
