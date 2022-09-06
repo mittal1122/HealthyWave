@@ -49,22 +49,22 @@ public class SessionController {
 
 	@PostMapping("/signup")
 	public ResponseEntity<?> signup(@RequestBody UserBean user) {
-
-		UserBean dbUser = userRepo.findByEmail(user.getEmail());
+System.out.println("reached 1");
+		UserBean dbUser = userRepo.findByEmail(user.getEmail());System.out.println("reached 2");
 		ResponseBean<UserBean> res = new ResponseBean<>();
 //		if(dbUser.getContactNum() != user.getContactNum()) {
-		if (dbUser == null) {
+		if (dbUser == null) {System.out.println("reached 3");
 			RoleBean role = roleRepo.findByRoleName(user.getRole().getRoleName());
 			if (role == null) {
 				res.setMsg("role is invalid");
 				return ResponseEntity.status(HttpStatus.NOT_FOUND).body(res); // ResponseBean Object
-			} else {
+			} else {System.out.println("reached 4");
 				user.setRole(role);
 				user.setPassword(bcrypt.encode(user.getPassword()));
 				user.setIsApprove(false);
 				userRepo.save(user);
 				res.setData(user);
-				res.setMsg("Signup Done! wait for approval from Admin...");
+				res.setMsg("Signup Done! Please wait for approval from Admin...");
 				return ResponseEntity.ok(res);
 			}
 //			}else {
