@@ -34,8 +34,7 @@ public class AppointmentBean {
 	private String patientRelativeContact;
 	@NotBlank(message = "Plese Select Gender")
 	private String gender;
-	@NotBlank(message = "Plese Choose DateTime")
-	private String dateTime; // Date data type try here
+	private String dateTime;
 	@NotBlank(message = "Plese Enter Reason")
 	private String reason;
 
