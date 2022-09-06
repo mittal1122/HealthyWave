@@ -22,9 +22,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bean.AppointmentBean;
+import com.bean.EmailDetails;
 import com.bean.ResponseBean;
 import com.repository.AppointmentRepository;
 import com.service.CaseNumberService;
+import com.service.EmailService;
 
 @RestController
 public class AppointmentController {
@@ -35,6 +37,8 @@ public class AppointmentController {
 	@Autowired
 	CaseNumberService caseService;
 
+	@Autowired
+	EmailService emailService;
 //	@GetMapping("/public/caseNumber")
 //	public ResponseEntity<?> getAppointmentForCaseNumber() {
 //
@@ -65,20 +69,34 @@ public class AppointmentController {
 			String formattedDate = date.format(date1);
 			System.out.println("After formatting: " + formattedDate);
 			appointmentBean.setDateTime(formattedDate);
-			
+
 			Integer caseNumber = caseService.generateCaseNumber();
 			appointmentBean.setCaseNumber(caseNumber);
+
+			EmailDetails email = new EmailDetails();
+			email.setRecipient(appointmentBean.getEmail());
+			email.setSubject("Appointment Submitted");
+			email.setMsgBody("Your appointment Submitted Successfully with Case Number : "
+					+ appointmentBean.getCaseNumber()
+					+ ". Please Wait for Confirmation from HEALTHYWAVE. \nCase Number : "
+					+ appointmentBean.getCaseNumber() + "\nPatient Name : " + appointmentBean.getPatientName()
+					+ "\nGender : " + appointmentBean.getGender() + "\nContact Number : " + appointmentBean.getContact()
+					+ "\nEmail :" + appointmentBean.getEmail() + "\nRelative Name : "
+					+ appointmentBean.getPatientRelativeName() + "\nRelative Contact :"
+					+ appointmentBean.getPatientRelativeContact() + "\nReason : " + appointmentBean.getReason());
+			String status = emailService.sendSimpleMail(email);
 			appointmentRepo.save(appointmentBean);
 			System.out.println("data added");
 			ResponseBean<AppointmentBean> resp = new ResponseBean<>();
 			resp.setData(appointmentBean);
-			resp.setMsg("Appointment Added...");
+			resp.setMsg("Appointment Submited...");
 			return ResponseEntity.status(HttpStatus.OK).body(resp);
 		}
 	}
 
-	@GetMapping("/appointment")
+	@GetMapping("/staff/appointment")
 	public ResponseEntity<?> getAllAppointment() {
+		System.out.println("getAllAppointment() called...");
 		List<AppointmentBean> appointments = appointmentRepo.findAll();
 		ResponseBean<List<AppointmentBean>> resp = new ResponseBean<>();
 		if (appointments.size() != 0) {

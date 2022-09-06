@@ -55,7 +55,8 @@ public class AuthTokenFilter implements Filter{
 					resp.setStatus(401);
 					resp.getWriter().write("{'msg':'user was not match'}");
 				}
-				else if(authToken == user.getAuthToken() || url.contains("/admin/")) {
+				else if(authToken == user.getAuthToken() || url.contains("/staff/")|| url.contains("/admin/")) {
+					System.out.println("user.getAuthToken() : "+user.getAuthToken());
 					System.out.println("user verfied....");
 					chain.doFilter(request, response);
 				}
