@@ -10,4 +10,6 @@ import com.bean.AppointmentBean;
 public interface AppointmentRepository extends CrudRepository<AppointmentBean, UUID>{
 
 	List<AppointmentBean> findAll();
+	
+	AppointmentBean findByCaseNumber(Integer caseNumber);
 }

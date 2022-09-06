@@ -110,7 +110,7 @@ public class SessionController {
 	public ResponseEntity<?> verifyEmail(@RequestBody VerifyEmailBean emailBean){
 	UserBean userBean = userRepo.findByEmail(emailBean.getEmail());
 		if(userBean != null) {
-			Integer genratedOTP = otpService.generateToken(4);
+			Integer genratedOTP = otpService.generateToken();
 			userBean.setOtp(genratedOTP);
 			userRepo.save(userBean);
 			String subject = "OTP For Reset Password";
@@ -136,7 +136,7 @@ public class SessionController {
 		return status;
 	}
 
-	// Sending email with attachment
+	// Sending email with attachment with
 	@PostMapping("/sendMailWithAttachment")
 	public String sendMailWithAttachment(@RequestBody EmailDetails details) {
 		String status = emailService.sendMailWithAttachment(details);

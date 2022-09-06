@@ -13,20 +13,18 @@ public class OtpGenerateService {
 
 	@Autowired
 	UserRepository userRepo;
-	public Integer generateToken(int size) {
-//		String allWords = "0123456789";
-//		int otp = 0;
-//		UserBean dbuser = null;
-//		do{
-//			for(int i = 1;i<=size;i++) {
-//			int index = (int) (allWords.length()*Math.random());
-//			otp = otp + allWords.charAt(index);
-//		}
-//		dbuser = userRepo.findByOtp(otp);
-//		}while(dbuser != null);
+
+	public Integer generateToken() {
+
+		UserBean dbuser = null;
 		Random random = new Random();
-		Integer otp = Integer.parseInt(String.format("%04d", random.nextInt(10000)));
-		System.out.println(otp +" : otp ");
+		Integer otp = 0;
+		do {
+			otp = Integer.parseInt(String.format("%04d", random.nextInt(10000)));
+
+			dbuser = userRepo.findByOtp(otp);
+		} while (dbuser != null);
+		System.out.println(otp + " : otp ");
 		return otp;
-}
+	}
 }
