@@ -30,7 +30,7 @@ public class PatientDocController {
 	@Autowired
 	PatientRepository patientRepo;
 	
-	@PostMapping("/patientDocument")
+	@PostMapping("/staff/")
 	public ResponseEntity<?> addPDoc(@RequestBody PatientDocumentBean patientDocBean){
 //		System.out.println("document : " + patientDocBean.getDocument()+" PatientId : "+patientDocBean.getPatient().getPatientId());
 		PatientBean patientBean = patientRepo.findByPatientId(patientDocBean.getPatient().getPatientId());

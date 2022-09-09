@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,6 +30,9 @@ import lombok.extern.log4j.Log4j2;
 @RequestMapping("/public")
 public class SessionController {
 
+
+	Integer generatedOTP;
+	
 	@Autowired
 	UserRepository userRepo;
 
@@ -47,6 +51,7 @@ public class SessionController {
 	@Autowired
 	EmailService emailService;
 
+	
 	@PostMapping("/signup")
 	public ResponseEntity<?> signup(@RequestBody UserBean user) {
 
@@ -110,11 +115,11 @@ public class SessionController {
 	public ResponseEntity<?> verifyEmail(@RequestBody VerifyEmailBean emailBean){
 	UserBean userBean = userRepo.findByEmail(emailBean.getEmail());
 		if(userBean != null) {
-			Integer genratedOTP = otpService.generateToken();
-			userBean.setOtp(genratedOTP);
+			generatedOTP = otpService.generateToken();
+			userBean.setOtp(generatedOTP);
 			userRepo.save(userBean);
 			String subject = "OTP For Reset Password";
-			String msgBody = "'" + genratedOTP+ "' is the One Time Password (OTP) to update your password associated with email address '"+ userBean.getEmail()+"' on the Healthywave webApp. This OTP is valid for next 3 minutes.If You don't have asked for this kindly ignore it.";
+			String msgBody = "'" + generatedOTP+ "' is the One Time Password (OTP) to update your password associated with email address '"+ userBean.getEmail()+"' on the Healthywave webApp. This OTP is valid for next 3 minutes.If You don't have asked for this kindly ignore it.";
 			
 			EmailDetails emailDetailBean = new EmailDetails();
 
@@ -122,25 +127,56 @@ public class SessionController {
 			emailDetailBean.setSubject(subject);
 			emailDetailBean.setMsgBody(msgBody);
 			String status = emailService.sendSimpleMail(emailDetailBean);
-			return ResponseEntity.ok().body(status);
+			log.info(status);
+			return ResponseEntity.ok().body(userBean);
 		}else {
 			
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 		}
 	}
-
-	@PostMapping("/sendMail")
-	public String sendMail(@RequestBody EmailDetails details) {
-		String status = emailService.sendSimpleMail(details);
-
-		return status;
+	
+	
+	@PostMapping("/verifyotp")
+	public ResponseEntity<?> verifyOTP(@RequestBody VerifyEmailBean verifyOtp){
+	UserBean userBean = userRepo.findByOtp(verifyOtp.getOtp());
+		if(userBean != null) {
+			return ResponseEntity.ok().body(userBean);
+		}else {
+			
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+		}
 	}
-
-	// Sending email with attachment with
-	@PostMapping("/sendMailWithAttachment")
-	public String sendMailWithAttachment(@RequestBody EmailDetails details) {
-		String status = emailService.sendMailWithAttachment(details);
-
-		return status;
+	
+	@PutMapping("/updatepassword")
+	public ResponseEntity<?> updatePassword(@RequestBody VerifyEmailBean updatePassword){
+		System.out.println("updatePassword().email..."+updatePassword.getEmail());
+		System.out.println("updatePassword().password..."+updatePassword.getPassword());
+	UserBean userBean = userRepo.findByEmail(updatePassword.getEmail());
+		if(userBean != null) {
+			System.out.println("userBean.getPassword();..."+userBean.getPassword());
+			userBean.setPassword(bcrypt.encode(updatePassword.getPassword()));
+			userRepo.save(userBean);
+			return ResponseEntity.ok().body(userBean);
+		}else {
+			
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+		}
 	}
+	
+	
+
+//	@PostMapping("/sendMail")
+//	public String sendMail(@RequestBody EmailDetails details) {
+//		String status = emailService.sendSimpleMail(details);
+//
+//		return status;
+//	}
+//
+//	// Sending email with attachment with
+//	@PostMapping("/sendMailWithAttachment")
+//	public String sendMailWithAttachment(@RequestBody EmailDetails details) {
+//		String status = emailService.sendMailWithAttachment(details);
+//
+//		return status;
+//	}
 }
