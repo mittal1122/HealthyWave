@@ -1,16 +1,22 @@
 package com.controller.publicapi;
 
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bean.EmailDetails;
 import com.bean.LoginBean;
+import com.bean.LogoutBean;
 import com.bean.ResponseBean;
 import com.bean.RoleBean;
 import com.bean.UserBean;
@@ -49,16 +55,15 @@ public class SessionController {
 
 	@PostMapping("/signup")
 	public ResponseEntity<?> signup(@RequestBody UserBean user) {
-System.out.println("reached 1");
-		UserBean dbUser = userRepo.findByEmail(user.getEmail());System.out.println("reached 2");
+		UserBean dbUser = userRepo.findByEmail(user.getEmail());
 		ResponseBean<UserBean> res = new ResponseBean<>();
 //		if(dbUser.getContactNum() != user.getContactNum()) {
-		if (dbUser == null) {System.out.println("reached 3");
+		if (dbUser == null) {
 			RoleBean role = roleRepo.findByRoleName(user.getRole().getRoleName());
 			if (role == null) {
 				res.setMsg("role is invalid");
 				return ResponseEntity.status(HttpStatus.NOT_FOUND).body(res); // ResponseBean Object
-			} else {System.out.println("reached 4");
+			} else {
 				user.setRole(role);
 				user.setPassword(bcrypt.encode(user.getPassword()));
 				user.setIsApprove(false);
@@ -142,5 +147,16 @@ System.out.println("reached 1");
 		String status = emailService.sendMailWithAttachment(details);
 
 		return status;
+	}
+	
+	@PostMapping("/logout/{userId}")
+	public ResponseEntity<?> logout(@PathVariable("userId") UUID userId){
+		System.out.println("userId:"+userId);
+		UserBean user = userRepo.findByUserId(userId);
+		user.setAuthToken(null);
+		
+		System.out.println("AUth TOken::::=>"+user.getAuthToken());
+		userRepo.save(user);
+		return ResponseEntity.ok(user);
 	}
 }

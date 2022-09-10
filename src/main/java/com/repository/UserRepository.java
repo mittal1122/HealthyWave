@@ -18,5 +18,4 @@ public interface UserRepository extends CrudRepository<UserBean, UUID> {
 	UserBean findByAuthToken(String authToken);
 	
 	UserBean findByOtp(Integer otp);
-	
 }
