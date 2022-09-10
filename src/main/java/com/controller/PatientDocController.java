@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bean.PatientBean;
@@ -22,6 +23,7 @@ import com.repository.PatientDocRepository;
 import com.repository.PatientRepository;
 
 @RestController
+@RequestMapping("/staff")
 public class PatientDocController {
 
 	@Autowired
@@ -30,7 +32,7 @@ public class PatientDocController {
 	@Autowired
 	PatientRepository patientRepo;
 	
-	@PostMapping("/staff/")
+	@PostMapping("/patientDocument")
 	public ResponseEntity<?> addPDoc(@RequestBody PatientDocumentBean patientDocBean){
 //		System.out.println("document : " + patientDocBean.getDocument()+" PatientId : "+patientDocBean.getPatient().getPatientId());
 		PatientBean patientBean = patientRepo.findByPatientId(patientDocBean.getPatient().getPatientId());

@@ -1,9 +1,13 @@
 package com.controller.publicapi;
 
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bean.EmailDetails;
 import com.bean.LoginBean;
+import com.bean.LogoutBean;
 import com.bean.ResponseBean;
 import com.bean.RoleBean;
 import com.bean.UserBean;
@@ -54,7 +59,6 @@ public class SessionController {
 	
 	@PostMapping("/signup")
 	public ResponseEntity<?> signup(@RequestBody UserBean user) {
-
 		UserBean dbUser = userRepo.findByEmail(user.getEmail());
 		ResponseBean<UserBean> res = new ResponseBean<>();
 //		if(dbUser.getContactNum() != user.getContactNum()) {
@@ -69,7 +73,7 @@ public class SessionController {
 				user.setIsApprove(false);
 				userRepo.save(user);
 				res.setData(user);
-				res.setMsg("Signup Done! wait for approval from Admin...");
+				res.setMsg("Signup Done! Please wait for approval from Admin...");
 				return ResponseEntity.ok(res);
 			}
 //			}else {
@@ -163,6 +167,7 @@ public class SessionController {
 		}
 	}
 	
+<<<<<<< HEAD
 	
 
 //	@PostMapping("/sendMail")
@@ -179,4 +184,16 @@ public class SessionController {
 //
 //		return status;
 //	}
+=======
+	@PostMapping("/logout/{userId}")
+	public ResponseEntity<?> logout(@PathVariable("userId") UUID userId){
+		System.out.println("userId:"+userId);
+		UserBean user = userRepo.findByUserId(userId);
+		user.setAuthToken(null);
+		
+		System.out.println("AUth TOken::::=>"+user.getAuthToken());
+		userRepo.save(user);
+		return ResponseEntity.ok(user);
+	}
+>>>>>>> 87199c2a81fe4c79ec54e53f88d84543f52dc848
 }

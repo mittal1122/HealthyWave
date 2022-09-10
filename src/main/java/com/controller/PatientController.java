@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bean.BedBean;
@@ -35,6 +36,7 @@ import com.repository.StateRepository;
 import com.repository.SymptomRepository;
 
 @RestController
+@RequestMapping("/staff")
 public class PatientController {
 
 	@Autowired
