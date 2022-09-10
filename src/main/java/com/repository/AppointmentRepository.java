@@ -11,7 +11,7 @@ public interface AppointmentRepository extends CrudRepository<AppointmentBean, U
 
 	List<AppointmentBean> findAll();
 	
-	AppointmentBean findByAppointmentId(UUID appointmentId);
+//	AppointmentBean findByAppointmentId(UUID appointmentId);
 	
 	AppointmentBean findByCaseNumber(Integer caseNumber);
 }
