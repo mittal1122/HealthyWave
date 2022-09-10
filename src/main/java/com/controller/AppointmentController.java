@@ -94,14 +94,14 @@ public class AppointmentController {
 		}
 	}
 
-	@DeleteMapping("/appointment/{appointmentId}")
+	@DeleteMapping("/appointment/decline/{appointmentId}")
 	public ResponseEntity<?> deleteAppointment(@PathVariable("appointmentId") UUID appointmentid) {
-		Optional<AppointmentBean> appointment = appointmentRepo.findById(appointmentid);
+		AppointmentBean appointment = appointmentRepo.findByAppointmentId(appointmentid);
 		ResponseBean<AppointmentBean> resp = new ResponseBean<>();
-		if (appointment.isPresent()) {
+		if (appointment != null) {
 			appointmentRepo.deleteById(appointmentid);
-			resp.setData(appointment.get());
-			resp.setMsg(appointment.get().getPatientName() + "'s Appointment Deleted");
+			resp.setData(appointment);
+			resp.setMsg(appointment.getPatientName() + "'s Appointment Deleted");
 			return ResponseEntity.status(HttpStatus.OK).body(resp);
 		} else {
 			resp.setMsg("No Appointment Found");
@@ -111,11 +111,11 @@ public class AppointmentController {
 
 	@GetMapping("/appointment/{appointmentId}")
 	public ResponseEntity<?> getAppointmentById(@PathVariable("appointmentId") UUID appointmentid) {
-		Optional<AppointmentBean> appointment = appointmentRepo.findById(appointmentid);
+		AppointmentBean appointment = appointmentRepo.findByAppointmentId(appointmentid);
 		ResponseBean<AppointmentBean> resp = new ResponseBean<>();
 
-		if (appointment.isPresent()) {
-			resp.setData(appointment.get());
+		if (appointment!= null) {
+			resp.setData(appointment);
 			resp.setMsg("Appointment Details...");
 			return ResponseEntity.status(HttpStatus.OK).body(resp);
 		} else {
@@ -145,6 +145,22 @@ public class AppointmentController {
 			resp.setData(appointmentBean);
 			resp.setMsg(appointmentBean.getPatientName() + "'s Appointment Details Updated");
 			return ResponseEntity.status(HttpStatus.OK).body(resp);
+		}
+	}
+	
+	@PutMapping("/appointment/approve/{appointmentId}")
+	public ResponseEntity<?> approveAppointment(@PathVariable("appointmentId") UUID appointmentid) {
+		AppointmentBean appointment = appointmentRepo.findByAppointmentId(appointmentid);
+		ResponseBean<AppointmentBean> resp = new ResponseBean<>();
+		if (appointment != null) {
+			appointment.setIsApproved(true);
+			appointmentRepo.save(appointment);
+			resp.setData(appointment);
+			resp.setMsg(appointment.getPatientName() + "'s Appointment Deleted");
+			return ResponseEntity.status(HttpStatus.OK).body(resp);
+		} else {
+			resp.setMsg("No Appointment Found");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(resp);
 		}
 	}
 }
