@@ -94,7 +94,7 @@ public class AppointmentController {
 		}
 	}
 
-	@DeleteMapping("/appointment/decline/{appointmentId}")
+	@DeleteMapping("/staff/declineappointment/{appointmentId}")
 	public ResponseEntity<?> deleteAppointment(@PathVariable("appointmentId") UUID appointmentid) {
 		AppointmentBean appointment = appointmentRepo.findByAppointmentId(appointmentid);
 		ResponseBean<AppointmentBean> resp = new ResponseBean<>();
@@ -109,7 +109,7 @@ public class AppointmentController {
 		}
 	}
 
-	@GetMapping("/appointment/{appointmentId}")
+	@GetMapping("/staff/appointment/{appointmentId}")
 	public ResponseEntity<?> getAppointmentById(@PathVariable("appointmentId") UUID appointmentid) {
 		AppointmentBean appointment = appointmentRepo.findByAppointmentId(appointmentid);
 		ResponseBean<AppointmentBean> resp = new ResponseBean<>();
@@ -124,7 +124,7 @@ public class AppointmentController {
 		}
 	}
 
-	@PutMapping("/appointment")
+	@PutMapping("/staff/appointment")
 	public ResponseEntity<?> updateAppointment(@RequestBody @Valid AppointmentBean appointmentBean,
 			BindingResult result) {
 		ResponseBean<AppointmentBean> resp = new ResponseBean<>();
@@ -148,7 +148,7 @@ public class AppointmentController {
 		}
 	}
 	
-	@PutMapping("/appointment/approve/{appointmentId}")
+	@PutMapping("/staff/approveappointment/{appointmentId}")
 	public ResponseEntity<?> approveAppointment(@PathVariable("appointmentId") UUID appointmentid) {
 		AppointmentBean appointment = appointmentRepo.findByAppointmentId(appointmentid);
 		ResponseBean<AppointmentBean> resp = new ResponseBean<>();
