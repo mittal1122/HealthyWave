@@ -68,6 +68,7 @@ public class AppointmentController {
 			
 			Integer caseNumber = caseService.generateCaseNumber();
 			appointmentBean.setCaseNumber(caseNumber);
+			appointmentBean.setIsApproved(false);
 			appointmentRepo.save(appointmentBean);
 			System.out.println("data added");
 			ResponseBean<AppointmentBean> resp = new ResponseBean<>();
@@ -77,7 +78,7 @@ public class AppointmentController {
 		}
 	}
 
-	@GetMapping("/appointment")
+	@GetMapping("/public/appointment")
 	public ResponseEntity<?> getAllAppointment() {
 		List<AppointmentBean> appointments = appointmentRepo.findAll();
 		ResponseBean<List<AppointmentBean>> resp = new ResponseBean<>();

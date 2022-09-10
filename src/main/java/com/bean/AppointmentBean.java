@@ -37,6 +37,7 @@ public class AppointmentBean {
 	private String dateTime;
 	@NotBlank(message = "Plese Enter Reason")
 	private String reason;
+	private Boolean isApproved;
 
 	public UUID getAppointmentId() {
 		return appointmentId;
@@ -107,5 +108,12 @@ public class AppointmentBean {
 	public void setReason(String reason) {
 		this.reason = reason;
 	}
+	public Boolean getIsApproved() {
+		return isApproved;
+	}
+	public void setIsApproved(Boolean isApproved) {
+		this.isApproved = isApproved;
+	}
+	
 
 }
