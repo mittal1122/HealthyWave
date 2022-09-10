@@ -27,7 +27,7 @@ public class PatientSymptomController {
 	@Autowired
 	SymptomRepository symptomRepo;
 	
-	@PostMapping("/patientsymptoms")
+	@PostMapping("/staff/patientsymptoms")
 	public ResponseEntity<?> addPatientSymptoms(@RequestBody PatientSymptomBean psBean) {
 		ResponseBean<PatientBean> res = new ResponseBean<>();
 

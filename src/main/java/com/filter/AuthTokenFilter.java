@@ -49,13 +49,15 @@ public class AuthTokenFilter implements Filter{
 			}else {
 				UserBean user =  userRepo.findByAuthToken(authToken);
 				System.out.println(user);
+				System.out.println("url.contains(/doctor/).."+url.contains("/doctor/"));
 				if(user == null) {
 					
 					resp.setContentType("application/json");
 					resp.setStatus(401);
 					resp.getWriter().write("{'msg':'user was not match'}");
 				}
-				else if(authToken == user.getAuthToken() || url.contains("/admin/")) {
+				else if(authToken == user.getAuthToken() || url.contains("/doctor/") || url.contains("/staff/")|| url.contains("/admin/")) {
+					System.out.println("user.getAuthToken() : "+user.getAuthToken());
 					System.out.println("user verfied....");
 					chain.doFilter(request, response);
 				}
