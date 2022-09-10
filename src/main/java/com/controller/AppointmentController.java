@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 import javax.validation.Valid;
@@ -148,19 +147,15 @@ public class AppointmentController {
 		}
 	}
 	
-	@PutMapping("/staff/approveappointment/{appointmentId}")
-	public ResponseEntity<?> approveAppointment(@PathVariable("appointmentId") UUID appointmentid) {
-		AppointmentBean appointment = appointmentRepo.findByAppointmentId(appointmentid);
+	@PutMapping("/staff/approveappointment")
+	public ResponseEntity<?> approveAppointment(@RequestBody AppointmentBean bean) {
 		ResponseBean<AppointmentBean> resp = new ResponseBean<>();
-		if (appointment != null) {
-			appointment.setIsApproved(true);
-			appointmentRepo.save(appointment);
-			resp.setData(appointment);
-			resp.setMsg(appointment.getPatientName() + "'s Appointment Deleted");
+			bean.setIsApproved(true);
+			appointmentRepo.save(bean);
+			resp.setData(bean);
+			resp.setMsg(bean.getPatientName() + "'s Appointment Approved");
 			return ResponseEntity.status(HttpStatus.OK).body(resp);
-		} else {
-			resp.setMsg("No Appointment Found");
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(resp);
-		}
+		
+		
 	}
 }
