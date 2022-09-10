@@ -78,7 +78,7 @@ public class AppointmentController {
 		}
 	}
 
-	@GetMapping("/appointment")
+	@GetMapping("/staff/appointment")
 	public ResponseEntity<?> getAllAppointment() {
 		List<AppointmentBean> appointments = appointmentRepo.findAll();
 		ResponseBean<List<AppointmentBean>> resp = new ResponseBean<>();
