@@ -39,7 +39,7 @@ public class Roleseed {
 			System.out.println("Role Added.....");
 
 		} else {
-			log.info("Roled Already Added....");
+//			log.info("Roled Already Added....");
 			
 		}
 	}

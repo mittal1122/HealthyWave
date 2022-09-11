@@ -91,7 +91,7 @@ public class SessionController {
 		
 		UserBean dbUser = userRepo.findByEmail(login.getEmail());
 		if (dbUser == null || !bcrypt.matches(login.getPassword(), dbUser.getPassword())) {
-			log.info("dbUser null in login");
+//			log.info("dbUser null in login");
 			ResponseBean<LoginBean> res = new ResponseBean<>();
 			res.setData(login);
 			res.setMsg("Invalid Credentials");
@@ -109,8 +109,8 @@ public class SessionController {
 			ResponseBean<UserBean> res = new ResponseBean<>();
 			res.setData(dbUser);
 			res.setMsg("Login Successfuly");
-			log.info(dbUser.getFirstName() + " Login Successfuly");
-			log.info(dbUser.getAuthToken()+" Login Successfuly");
+//			log.info(dbUser.getFirstName() + " Login Successfuly");
+//			log.info(dbUser.getAuthToken()+" Login Successfuly");
 			return ResponseEntity.status(HttpStatus.OK).body(res);
 		}
 	}
@@ -131,7 +131,7 @@ public class SessionController {
 			emailDetailBean.setSubject(subject);
 			emailDetailBean.setMsgBody(msgBody);
 			String status = emailService.sendSimpleMail(emailDetailBean);
-			log.info(status);
+//			log.info(status);
 			return ResponseEntity.ok().body(userBean);
 		}else {
 			

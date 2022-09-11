@@ -25,10 +25,12 @@ import com.bean.CityBean;
 import com.bean.DoctorBean;
 import com.bean.EmailDetails;
 import com.bean.ResponseBean;
+import com.bean.SlotBean;
 import com.bean.StateBean;
 import com.repository.AppointmentRepository;
 import com.repository.CityRepository;
 import com.repository.DoctorRepository;
+import com.repository.SlotRepository;
 import com.repository.StateRepository;
 import com.service.CaseNumberService;
 import com.service.EmailService;
@@ -53,6 +55,9 @@ public class AppointmentController {
 	
 	@Autowired
 	DoctorRepository doctorRepo;
+	
+	@Autowired 
+	SlotRepository slotRepo;
 	
 //	@GetMapping("/public/caseNumber")
 //	public ResponseEntity<?> getAppointmentForCaseNumber() {
@@ -81,7 +86,7 @@ public class AppointmentController {
 			Optional<StateBean> stateBean = stateRepo.findById(appointmentBean.getState().getStateId());
 			Optional<CityBean> cityBean = cityRepo.findById(appointmentBean.getCity().getCityId());
 			Optional<DoctorBean> doctorBean = doctorRepo.findById(appointmentBean.getDoctor().getDoctorId());
-			
+			Optional<SlotBean> slotBean = slotRepo.findById(appointmentBean.getSlot().getSlotId());
 			LocalDateTime date1 = LocalDateTime.now();
 			DateTimeFormatter date = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
 
