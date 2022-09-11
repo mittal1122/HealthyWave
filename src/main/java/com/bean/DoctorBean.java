@@ -14,6 +14,10 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -42,6 +46,31 @@ public class DoctorBean {
 	@ManyToMany
 	@JoinTable(name = "ward_doctor", joinColumns = @JoinColumn(name = "doctorId"), inverseJoinColumns = @JoinColumn(name = "wardId"))
 	private Set<WardBean> wards;
+	
+	
+	@OneToMany(mappedBy = "doctor")
+	private Set<SlotBean> slot;
+	
+	@Transient 
+	private MultipartFile  profile;
+	private String profilePath;
+	
+	
+	public MultipartFile getProfile() {
+		return profile;
+	}
+
+	public void setProfile(MultipartFile profile) {
+		this.profile = profile;
+	}
+
+	public String getProfilePath() {
+		return profilePath;
+	}
+
+	public void setProfilePath(String profilePath) {
+		this.profilePath = profilePath;
+	}
 
 	public UUID getDoctorId() {
 		return doctorId;

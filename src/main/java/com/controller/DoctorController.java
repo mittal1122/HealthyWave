@@ -184,5 +184,22 @@ public class DoctorController {
 			return ResponseEntity.status(HttpStatus.OK).body(res);
 		}
 	}
+	
+	
+	
+//	public String saveProfile(DoctorBean bean){
+//		
+//		doctorRepo.save(bean); // firstname email password 
+//		UUID userId = bean.getUser().getUserId();
+//
+//		imageUpload(bean.getProfile(),userId);
+//		bean.setProfilePath("resources\\images\\"+userId+"\\"+bean.getProfile().getOriginalFilename());
+//
+//		//image localstore -> cloud -> cloud url angualr 
+//		//image -> string -> angular -> strig -> image 
+//
+//		doctorRepo.save(bean);
+//	
+//	}
 
 }

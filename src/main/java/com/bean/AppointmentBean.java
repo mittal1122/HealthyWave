@@ -38,7 +38,14 @@ public class AppointmentBean {
 	@NotBlank(message = "Plese Enter Reason")
 	private String reason;
 	private Boolean isApproved;
+	private String slot;
 
+	public String getSlot() {
+		return slot;
+	}
+	public void setSlot(String slot) {
+		this.slot = slot;
+	}
 	public UUID getAppointmentId() {
 		return appointmentId;
 	}

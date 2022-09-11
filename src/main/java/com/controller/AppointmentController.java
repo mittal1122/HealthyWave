@@ -59,13 +59,14 @@ public class AppointmentController {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(resp);
 
 		} else {
-			LocalDateTime date1 = LocalDateTime.now();
-			DateTimeFormatter date = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+//			LocalDateTime date1 = LocalDateTime.now();
+//			DateTimeFormatter date = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
 
-			String formattedDate = date.format(date1);
-			System.out.println("After formatting: " + formattedDate);
-			appointmentBean.setDateTime(formattedDate);
-			
+//			String formattedDate = date.format(date1);
+//			System.out.println("After formatting: " + formattedDate);
+//			appointmentBean.setDateTime(formattedDate);
+			System.out.println(appointmentBean.getDateTime());
+			System.out.println(appointmentBean.getSlot());
 			Integer caseNumber = caseService.generateCaseNumber();
 			appointmentBean.setCaseNumber(caseNumber);
 			appointmentBean.setIsApproved(false);
