@@ -10,9 +10,9 @@ import org.springframework.stereotype.Repository;
 import com.bean.WardBean;
 
 @Repository
-public interface WardRepository extends CrudRepository<WardBean, UUID>{
+public interface wardRepository extends CrudRepository<WardBean, UUID>{
 
-	List<WardBean> findAll();
+	List<WardBean> findAll();       
 	
 	WardBean findByWardId(UUID wardId);
 }
