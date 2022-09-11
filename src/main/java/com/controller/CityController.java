@@ -82,7 +82,7 @@ public class CityController {
 		return ResponseEntity.status(HttpStatus.OK).body(res);
 	}
 
-	@GetMapping("/city/{stateId}")
+	@GetMapping("/public/city/{stateId}")
 	public ResponseEntity<?> getCityById(@PathVariable("stateId") UUID stateId) {
 		ResponseBean<List<CityBean>> res = new ResponseBean<>();
 		try {
