@@ -53,7 +53,7 @@ public class AppointmentBean {
 	@NotNull(message = "Please Select Doctor")
 	private DoctorBean doctor;
 	
-	private String dateTime;
+	private String createdAt;
 	@NotBlank(message = "Please Enter Reason")
 	private String reason;
 	private Boolean isApproved;
@@ -127,11 +127,12 @@ public class AppointmentBean {
 	public void setDoctor(DoctorBean doctor) {
 		this.doctor = doctor;
 	}
-	public String getDateTime() {
-		return dateTime;
+	
+	public String getCreatedAt() {
+		return createdAt;
 	}
-	public void setDateTime(String dateTime) {
-		this.dateTime = dateTime;
+	public void setCreatedAt(String createdAt) {
+		this.createdAt = createdAt;
 	}
 	public String getReason() {
 		return reason;

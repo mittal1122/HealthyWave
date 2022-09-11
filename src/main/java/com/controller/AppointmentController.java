@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,9 +21,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bean.AppointmentBean;
+import com.bean.EmailDetails;
 import com.bean.ResponseBean;
 import com.repository.AppointmentRepository;
 import com.service.CaseNumberService;
+import com.service.EmailService;
 
 @RestController
 public class AppointmentController {
@@ -35,6 +36,8 @@ public class AppointmentController {
 	@Autowired
 	CaseNumberService caseService;
 
+	@Autowired
+	EmailService emailService;
 //	@GetMapping("/public/caseNumber")
 //	public ResponseEntity<?> getAppointmentForCaseNumber() {
 //
@@ -59,22 +62,33 @@ public class AppointmentController {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(resp);
 
 		} else {
-//			LocalDateTime date1 = LocalDateTime.now();
-//			DateTimeFormatter date = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+			LocalDateTime date1 = LocalDateTime.now();
+			DateTimeFormatter date = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
 
-//			String formattedDate = date.format(date1);
-//			System.out.println("After formatting: " + formattedDate);
-//			appointmentBean.setDateTime(formattedDate);
-			System.out.println(appointmentBean.getDateTime());
+			String formattedDate = date.format(date1);
+			System.out.println("After formatting: " + formattedDate);
+			appointmentBean.setCreatedAt(formattedDate);
 			System.out.println(appointmentBean.getSlot());
 			Integer caseNumber = caseService.generateCaseNumber();
 			appointmentBean.setCaseNumber(caseNumber);
+
+			EmailDetails email = new EmailDetails();
+			email.setRecipient(appointmentBean.getEmail());
+			email.setSubject("Appointment Submitted");
+			email.setMsgBody("Your appointment Submitted Successfully with Case Number : "
+					+ appointmentBean.getCaseNumber()
+					+ ". Please Wait for Confirmation from HEALTHYWAVE. \nCase Number : "
+					+ appointmentBean.getCaseNumber() + "\nPatient Name : " + appointmentBean.getPatientName()
+					+ "\nGender : " + appointmentBean.getGender() + "\nContact Number : " + appointmentBean.getContact()
+					+ "\nEmail :" + appointmentBean.getEmail() + "\nReason : " + appointmentBean.getReason());
+			String status = emailService.sendSimpleMail(email);
+
 			appointmentBean.setIsApproved(false);
 			appointmentRepo.save(appointmentBean);
 			System.out.println("data added");
 			ResponseBean<AppointmentBean> resp = new ResponseBean<>();
 			resp.setData(appointmentBean);
-			resp.setMsg("Appointment Added...");
+			resp.setMsg("Appointment Added..."+status);
 			return ResponseEntity.status(HttpStatus.OK).body(resp);
 		}
 	}
@@ -115,7 +129,7 @@ public class AppointmentController {
 		Optional<AppointmentBean> appointment = appointmentRepo.findById(appointmentid);
 		ResponseBean<AppointmentBean> resp = new ResponseBean<>();
 
-		if (appointment!= null) {
+		if (appointment != null) {
 			resp.setData(appointment.get());
 			resp.setMsg("Appointment Details...");
 			return ResponseEntity.status(HttpStatus.OK).body(resp);
@@ -148,28 +162,29 @@ public class AppointmentController {
 			return ResponseEntity.status(HttpStatus.OK).body(resp);
 		}
 	}
-	
+
 	@PutMapping("/staff/approveappointment")
 	public ResponseEntity<?> approveAppointment(@RequestBody AppointmentBean bean) {
 		Optional<AppointmentBean> appointment = appointmentRepo.findById(bean.getAppointmentId());
 		ResponseBean<AppointmentBean> resp = new ResponseBean<>();
-		if(appointment.isPresent() == true) {
+		if (appointment.isPresent() == true) {
 			bean.setIsApproved(true);
 			appointmentRepo.save(bean);
 			resp.setData(bean);
 			resp.setMsg(bean.getPatientName() + "'s Appointment Approved");
 			return ResponseEntity.status(HttpStatus.OK).body(resp);
-		}else {
+		} else {
 			resp.setMsg("this appointment is not valid");
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(resp);
 		}
-			
+
 	}
-	
+
 	@PutMapping("/staff/declineappointment")
 	public ResponseEntity<?> deleteAppointment(@RequestBody AppointmentBean bean) {
 		Optional<AppointmentBean> appointment = appointmentRepo.findById(bean.getAppointmentId());
-		ResponseBean<AppointmentBean> resp = new ResponseBean<>();System.out.println("AppO:"+appointment);
+		ResponseBean<AppointmentBean> resp = new ResponseBean<>();
+		System.out.println("AppO:" + appointment);
 		if (appointment != null) {
 			appointment.get().setIsApproved(false);
 			appointmentRepo.save(appointment.get());
@@ -179,6 +194,6 @@ public class AppointmentController {
 		} else {
 			resp.setMsg("this appointment is not valid");
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(resp);
-		}	
+		}
 	}
 }
