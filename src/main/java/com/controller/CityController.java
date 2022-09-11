@@ -72,7 +72,7 @@ public class CityController {
 	}
 
 	 
-	@GetMapping("/public/city/{stateId}")
+	@GetMapping("/cityname/{stateId}")
 	public ResponseEntity<?> getAllCityName(@PathVariable("stateId") UUID stateId) {
 
 		List<CityView> city = cityRepo.findByState(stateId);
