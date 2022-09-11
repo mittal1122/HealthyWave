@@ -21,9 +21,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bean.AppointmentBean;
+import com.bean.CityBean;
+import com.bean.DoctorBean;
 import com.bean.EmailDetails;
 import com.bean.ResponseBean;
+import com.bean.StateBean;
 import com.repository.AppointmentRepository;
+import com.repository.CityRepository;
+import com.repository.DoctorRepository;
+import com.repository.StateRepository;
 import com.service.CaseNumberService;
 import com.service.EmailService;
 
@@ -38,6 +44,16 @@ public class AppointmentController {
 
 	@Autowired
 	EmailService emailService;
+	
+	@Autowired
+	StateRepository stateRepo;
+	
+	@Autowired
+	CityRepository cityRepo;
+	
+	@Autowired
+	DoctorRepository doctorRepo;
+	
 //	@GetMapping("/public/caseNumber")
 //	public ResponseEntity<?> getAppointmentForCaseNumber() {
 //
@@ -62,6 +78,10 @@ public class AppointmentController {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(resp);
 
 		} else {
+			Optional<StateBean> stateBean = stateRepo.findById(appointmentBean.getState().getStateId());
+			Optional<CityBean> cityBean = cityRepo.findById(appointmentBean.getCity().getCityId());
+			Optional<DoctorBean> doctorBean = doctorRepo.findById(appointmentBean.getDoctor().getDoctorId());
+			
 			LocalDateTime date1 = LocalDateTime.now();
 			DateTimeFormatter date = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
 

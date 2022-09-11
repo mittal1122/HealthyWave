@@ -12,6 +12,6 @@ public interface SlotRepository extends CrudRepository<SlotBean, UUID>{
 //	@Query(value="select * from where ")
 //	List<SlotBean> findAllById(UUID doctorId);
 
-	@Query(value = "select * from slot where doctor_id = :doctorId and date = :dateData",nativeQuery = true)
-	List<SlotBean> findByDoctorIdDate(UUID doctorId,String dateData);
+	@Query(value = "select * from slot where doctor_id = :doctorId and date = :date",nativeQuery = true)
+	List<SlotBean> findByDoctorIdDate(UUID doctorId,String date);
 }

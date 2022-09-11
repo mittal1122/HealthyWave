@@ -41,7 +41,7 @@ public class DoctorController {
 	@Autowired
 	UserRepository userRepo;
 
-	@PostMapping("/doctor")
+	@PostMapping("/doctor/")
 	public ResponseEntity<?> addDoctor(@RequestBody @Valid DoctorBean bean, BindingResult result) {
 		System.out.println("Here at AddDoctor");
 		if (result.hasErrors()) {
@@ -82,10 +82,7 @@ public class DoctorController {
 	public ResponseEntity<?> getAllDoctors() {
 		List<DoctorBean> doctor = doctorRepo.findAll();
 		System.out.println("AAAAAAAAAAAAAA");
-		System.out.println("doctor.get(0).getDoctorId()" + doctor.get(0).getDoctorId());
-		System.out.println("doctor.get(0).getSpecialization()" + doctor.get(0).getSpecialization().getSpcialization());
-		System.out.println("doctor.get(0).getUser().getFirstName()" + doctor.get(0).getUser().getFirstName());
-
+		
 		if (doctor.size() != 0) {
 			System.out.println("BBBBBBBBBB");
 //			ResponseBean<SpecializationBean> res = new ResponseBean<>();

@@ -48,7 +48,7 @@ public class DoctorBean {
 	@JoinTable(name = "ward_doctor", joinColumns = @JoinColumn(name = "doctorId"), inverseJoinColumns = @JoinColumn(name = "wardId"))
 	private Set<WardBean> wards;
 	
-	
+	@JsonIgnore
 	@OneToMany(mappedBy = "doctor")
 	private Set<SlotBean> slot;
 	
