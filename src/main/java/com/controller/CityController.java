@@ -35,7 +35,7 @@ public class CityController {
 	@Autowired
 	StateRepository stateRepo;
 
-	@PostMapping("/city")
+	@PostMapping("/public/city")
 	public ResponseEntity<?> addCity(@RequestBody @Valid CityBean cityBean, BindingResult result) {
 		if (result.hasErrors()) {
 			ResponseBean<List<String>> res = new ResponseBean<>();
