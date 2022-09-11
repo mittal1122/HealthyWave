@@ -61,7 +61,7 @@ public class CityController {
 		}
 	}
 
-	@GetMapping("/city")
+	@GetMapping("/public/city")
 	public ResponseEntity<?> getAllCity() {
 
 		List<CityBean> city = cityRepo.findAll();
@@ -71,9 +71,8 @@ public class CityController {
 		return ResponseEntity.status(HttpStatus.OK).body(res);
 	}
 
-	
-	//gj - 1 
-	@GetMapping("/cityname/{stateId}")
+	 
+	@GetMapping("/public/city/{stateId}")
 	public ResponseEntity<?> getAllCityName(@PathVariable("stateId") UUID stateId) {
 
 		List<CityView> city = cityRepo.findByState(stateId);

@@ -66,7 +66,7 @@ public class BedController {
 		}
 	}
 	
-	@GetMapping("/bed")
+	@GetMapping("/staff/bed")
 	public ResponseEntity<?> getAllBeds(){
 		List<BedBean> beds = bedRepo.findAll();
 		ResponseBean<List<BedBean>> resp = new ResponseBean<>();

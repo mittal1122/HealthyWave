@@ -53,7 +53,7 @@ public class StateController {
 
 	}
 
-	@GetMapping("/state")
+	@GetMapping("/public/state")
 	public ResponseEntity<?> listAllState() {
 
 		List<StateBean> bean = stateRepo.findAll();
