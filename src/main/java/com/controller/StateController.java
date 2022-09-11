@@ -29,7 +29,7 @@ public class StateController {
 	@Autowired
 	StateRepository stateRepo;
 
-	@PostMapping("/state")
+	@PostMapping("/public/state")
 	public ResponseEntity<?> addState(@RequestBody @Valid StateBean bean, BindingResult result) {
 		if (result.hasErrors()) {
 			ResponseBean<List<String>> res = new ResponseBean<>();
