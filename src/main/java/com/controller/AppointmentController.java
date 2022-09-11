@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import javax.validation.Valid;
@@ -147,43 +148,36 @@ public class AppointmentController {
 		}
 	}
 	
-<<<<<<< HEAD
 	@PutMapping("/staff/approveappointment")
 	public ResponseEntity<?> approveAppointment(@RequestBody AppointmentBean bean) {
+		Optional<AppointmentBean> appointment = appointmentRepo.findById(bean.getAppointmentId());
 		ResponseBean<AppointmentBean> resp = new ResponseBean<>();
+		if(appointment.isPresent() == true) {
 			bean.setIsApproved(true);
 			appointmentRepo.save(bean);
 			resp.setData(bean);
 			resp.setMsg(bean.getPatientName() + "'s Appointment Approved");
-=======
-	@PutMapping("/staff/declineappointment/{appointmentId}")
-	public ResponseEntity<?> deleteAppointment(@PathVariable("appointmentId") UUID appointmentid) {
-		Optional<AppointmentBean> appointment = appointmentRepo.findById(appointmentid);
+			return ResponseEntity.status(HttpStatus.OK).body(resp);
+		}else {
+			resp.setMsg("this appointment is not valid");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(resp);
+		}
+			
+	}
+	
+	@PutMapping("/staff/declineappointment")
+	public ResponseEntity<?> deleteAppointment(@RequestBody AppointmentBean bean) {
+		Optional<AppointmentBean> appointment = appointmentRepo.findById(bean.getAppointmentId());
 		ResponseBean<AppointmentBean> resp = new ResponseBean<>();System.out.println("AppO:"+appointment);
 		if (appointment != null) {
 			appointment.get().setIsApproved(false);
 			appointmentRepo.save(appointment.get());
 			resp.setData(appointment.get());
-			resp.setMsg(appointment.get().getPatientName() + "'s Appointment Updated");
+			resp.setMsg(appointment.get().getPatientName() + "'s Appointment Decline");
 			return ResponseEntity.status(HttpStatus.OK).body(resp);
 		} else {
-			resp.setMsg("No Appointment Found");
+			resp.setMsg("this appointment is not valid");
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(resp);
-		}
-	}
-	
-	@PutMapping("/staff/approveappointment/{appointmentId}")
-	public ResponseEntity<?> approveAppointment(@PathVariable("appointmentId") UUID appointmentid) {
-		Optional<AppointmentBean> appointment = appointmentRepo.findById(appointmentid);
-		ResponseBean<AppointmentBean> resp = new ResponseBean<>();
-		if (appointment != null) {
-			appointment.get().setIsApproved(true);
-			appointmentRepo.save(appointment.get());
-			resp.setData(appointment.get());
-			resp.setMsg(appointment.get().getPatientName() + "'s Appointment Updated");
->>>>>>> 60c9b021e176aff9e7d1fd0c47a80bf38e6c4254
-			return ResponseEntity.status(HttpStatus.OK).body(resp);
-		
-		
+		}	
 	}
 }

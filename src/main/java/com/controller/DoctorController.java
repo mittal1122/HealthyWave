@@ -30,7 +30,6 @@ import com.repository.SpecializationRepository;
 import com.repository.UserRepository;
 
 @RestController
-@RequestMapping("/doctor")
 public class DoctorController {
 
 	@Autowired
@@ -79,7 +78,7 @@ public class DoctorController {
 		}
 	}
 
-	@GetMapping("/doctor")
+	@GetMapping("/public/doctor")
 	public ResponseEntity<?> getAllDoctors() {
 		List<DoctorBean> doctor = doctorRepo.findAll();
 		System.out.println("AAAAAAAAAAAAAA");
