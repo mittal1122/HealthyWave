@@ -32,7 +32,6 @@ public class SlotController {
 	
 	@PostMapping("/public/slot")
 	public ResponseEntity<?> addSlot(@RequestBody SlotBean bean) {
-	
 			DoctorBean doctorBean = doctorRepo.findById(bean.getDoctor().getDoctorId()).get();
 			bean.setDoctor(doctorBean);
 			slotRepo.save(bean);
