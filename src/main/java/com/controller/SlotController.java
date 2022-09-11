@@ -45,7 +45,7 @@ public class SlotController {
 			return ResponseEntity.status(HttpStatus.OK).body(res);
 	}
 	
-	@GetMapping("/public/slot")
+	@PostMapping("/public/slots")
 	public ResponseEntity<?> getDoctorById(@RequestBody DoctorSlotBean doctorSlotBean) {
 		ResponseBean<List<SlotBean>> res = new ResponseBean<>();
 		try {

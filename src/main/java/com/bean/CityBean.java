@@ -32,6 +32,10 @@ public class CityBean {
 	@JsonIgnore
 	@OneToMany(mappedBy = "city")
 	private Set<PatientBean> patient;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "city")
+	private Set<AppointmentBean> appointment;
 
 	public UUID getCityId() {
 		return cityId;
@@ -51,4 +55,17 @@ public class CityBean {
 	public void setState(StateBean state) {
 		this.state = state;
 	}
+	public Set<PatientBean> getPatient() {
+		return patient;
+	}
+	public void setPatient(Set<PatientBean> patient) {
+		this.patient = patient;
+	}
+	public Set<AppointmentBean> getAppointment() {
+		return appointment;
+	}
+	public void setAppointment(Set<AppointmentBean> appointment) {
+		this.appointment = appointment;
+	}
+	
 }

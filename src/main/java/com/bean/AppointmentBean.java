@@ -16,6 +16,8 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "appointment")
 public class AppointmentBean {
@@ -48,6 +50,7 @@ public class AppointmentBean {
 	@JoinColumn(name = "stateId", nullable = false)
 	@NotNull(message = "Please Select State")
 	private StateBean state;
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "doctorId",nullable = false)
 	@NotNull(message = "Please Select Doctor")

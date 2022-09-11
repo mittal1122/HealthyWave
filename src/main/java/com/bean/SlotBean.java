@@ -12,6 +12,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="slot")
 public class SlotBean {
@@ -25,6 +27,7 @@ public class SlotBean {
 	@JoinColumn(name = "doctorId",nullable = false)
 	private DoctorBean doctor;
 	
+	@JsonIgnore
 	@OneToOne(mappedBy = "slot")
 	private AppointmentBean appointment;
 	

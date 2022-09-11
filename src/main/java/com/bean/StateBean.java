@@ -30,6 +30,9 @@ public class StateBean {
 	@JsonIgnore
 	@OneToMany(mappedBy = "state")
 	private Set<PatientBean> patient = new HashSet<PatientBean>();
+	@JsonIgnore
+	@OneToMany(mappedBy = "state")
+	private Set<AppointmentBean> appointment = new HashSet<AppointmentBean>();
 	
 	public UUID getStateId() {
 		return stateId;
@@ -49,6 +52,18 @@ public class StateBean {
 	}
 	public void setCity(Set<CityBean> city) {
 		this.city = city;
+	}
+	public Set<PatientBean> getPatient() {
+		return patient;
+	}
+	public void setPatient(Set<PatientBean> patient) {
+		this.patient = patient;
+	}
+	public Set<AppointmentBean> getAppointment() {
+		return appointment;
+	}
+	public void setAppointment(Set<AppointmentBean> appointment) {
+		this.appointment = appointment;
 	}
 	
 	

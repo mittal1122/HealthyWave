@@ -15,6 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -50,6 +51,9 @@ public class DoctorBean {
 	
 	@OneToMany(mappedBy = "doctor")
 	private Set<SlotBean> slot;
+	
+	@OneToMany(mappedBy = "doctor")
+	private Set<AppointmentBean> appointment;
 	
 	@Transient 
 	private MultipartFile  profile;
@@ -118,6 +122,22 @@ public class DoctorBean {
 
 	public void setWards(Set<WardBean> wards) {
 		this.wards = wards;
+	}
+
+	public Set<SlotBean> getSlot() {
+		return slot;
+	}
+
+	public void setSlot(Set<SlotBean> slot) {
+		this.slot = slot;
+	}
+
+	public Set<AppointmentBean> getAppointment() {
+		return appointment;
+	}
+
+	public void setAppointment(Set<AppointmentBean> appointment) {
+		this.appointment = appointment;
 	}
 	
 	
