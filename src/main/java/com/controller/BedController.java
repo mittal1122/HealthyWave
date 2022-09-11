@@ -23,7 +23,7 @@ import com.bean.BedBean;
 import com.bean.ResponseBean;
 import com.bean.WardBean;
 import com.repository.BedRepository;
-import com.repository.WardRepository;
+import com.repository.wardRepository;
 
 @RestController
 public class BedController {
@@ -33,7 +33,7 @@ public class BedController {
 	BedRepository bedRepo;
 	
 	@Autowired 
-	WardRepository wardRepo;
+	wardRepository wardRepo;
 	
 	@PostMapping("/bed")
 	public ResponseEntity<?> addBed(@RequestBody @Valid BedBean bedBean,BindingResult result){
