@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,9 +21,6 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 @Entity
 @Table(name = "patient")
 public class PatientBean {
@@ -39,23 +35,12 @@ public class PatientBean {
 	private String contact;
 	@NotBlank(message = "Please Enter Email")
 	private String email;
-	@NotBlank(message = "Please Enter Relative Name")
-	private String patientRelativeName;
-	@NotBlank(message = "Please Enter Relative Contact Number")
-	private String patientRelativeContact;
 	@NotBlank(message = "Please Select Gender")
 	private String gender;
 	@NotNull(message = "Please Select Date of Birth")
 	private Date dob;
-	@NotBlank(message = "Please Select Date & Time")
-	private String dateTime;
 	@NotBlank(message = "Please Enter Address")
-	private String line1;
-	private String line2;
-	@Column(length = 6)
-	@NotNull(message = "Please Enter Pincode")
-	private Integer pincode;
-	
+	private String address;
 	@ManyToOne
 	@JoinColumn(name = "cityId", nullable = false)
 	@NotNull(message = "Please Select City")
@@ -65,21 +50,25 @@ public class PatientBean {
 	@JoinColumn(name = "stateId", nullable = false)
 	@NotNull(message = "Please Select State")
 	private StateBean state;
-	
-	@OneToOne
-	@JoinColumn(name = "bedId",nullable = false)
-	@NotNull(message = "Please Select Bed")
-	private BedBean bed;
-	
 	@ManyToOne
 	@JoinColumn(name = "doctorId",nullable = false)
 	@NotNull(message = "Please Select Doctor")
 	private DoctorBean doctor;
 	
+	private String dateTime;
+	@NotBlank(message = "Please Enter Reason")
+	private String reason;
+	@OneToOne
+	@JoinColumn(name = "slotId",nullable = false)
+	private SlotBean slot;
+	@OneToOne
+	@JoinColumn(name = "bedId",nullable = false)
+	@NotNull(message = "Please Select Bed")
+	private BedBean bed;
+
 	@NotBlank(message = "Please Enter Previous Medical History")
 	private String previousHistory;
-	@NotBlank(message = "Please Select Doctor Visiting Date & Time")
-	private String doctorVisitTime;
+	private String visitDateTime;
 	@NotBlank(message = "Please Select Patient Status")
 	private String patientStatus;
 	
@@ -91,6 +80,7 @@ public class PatientBean {
 	@JoinTable(name = "patient_symptom",joinColumns = @JoinColumn(name="patientId"),inverseJoinColumns = @JoinColumn(name = "symptomId"))
 	@NotNull(message = "Please Enter atleast one Syptom")
 	private List<SymptomBean> symptoms = new ArrayList<>();
+
 
 	public UUID getPatientId() {
 		return patientId;
@@ -132,84 +122,12 @@ public class PatientBean {
 		this.email = email;
 	}
 
-	public String getPatientRelativeName() {
-		return patientRelativeName;
-	}
-
-	public void setPatientRelativeName(String patientRelativeName) {
-		this.patientRelativeName = patientRelativeName;
-	}
-
-	public String getPatientRelativeContact() {
-		return patientRelativeContact;
-	}
-
-	public void setPatientRelativeContact(String patientRelativeContact) {
-		this.patientRelativeContact = patientRelativeContact;
-	}
-
 	public String getGender() {
 		return gender;
 	}
 
 	public void setGender(String gender) {
 		this.gender = gender;
-	}
-
-	public Date getDob() {
-		return dob;
-	}
-
-	public void setDob(Date dob) {
-		this.dob = dob;
-	}
-
-	public String getDateTime() {
-		return dateTime;
-	}
-
-	public void setDateTime(String dateTime) {
-		this.dateTime = dateTime;
-	}
-
-	public String getLine1() {
-		return line1;
-	}
-
-	public void setLine1(String line1) {
-		this.line1 = line1;
-	}
-
-	public String getLine2() {
-		return line2;
-	}
-
-	public void setLine2(String line2) {
-		this.line2 = line2;
-	}
-
-	public Integer getPincode() {
-		return pincode;
-	}
-
-	public void setPincode(Integer pincode) {
-		this.pincode = pincode;
-	}
-
-	public CityBean getCity() {
-		return city;
-	}
-
-	public void setCity(CityBean city) {
-		this.city = city;
-	}
-
-	public StateBean getState() {
-		return state;
-	}
-
-	public void setState(StateBean state) {
-		this.state = state;
 	}
 
 	public BedBean getBed() {
@@ -220,14 +138,6 @@ public class PatientBean {
 		this.bed = bed;
 	}
 
-	public DoctorBean getDoctor() {
-		return doctor;
-	}
-
-	public void setDoctor(DoctorBean doctor) {
-		this.doctor = doctor;
-	}
-
 	public String getPreviousHistory() {
 		return previousHistory;
 	}
@@ -236,12 +146,12 @@ public class PatientBean {
 		this.previousHistory = previousHistory;
 	}
 
-	public String getDoctorVisitTime() {
-		return doctorVisitTime;
+	public String getVisitDateTime() {
+		return visitDateTime;
 	}
 
-	public void setDoctorVisitTime(String doctorVisitTime) {
-		this.doctorVisitTime = doctorVisitTime;
+	public void setVisitDateTime(String visitDateTime) {
+		this.visitDateTime = visitDateTime;
 	}
 
 	public String getPatientStatus() {
@@ -266,5 +176,71 @@ public class PatientBean {
 
 	public void setSymptoms(List<SymptomBean> symptoms) {
 		this.symptoms = symptoms;
-	}	
+	}
+
+	public Date getDob() {
+		return dob;
+	}
+
+	public void setDob(Date dob) {
+		this.dob = dob;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public CityBean getCity() {
+		return city;
+	}
+
+	public void setCity(CityBean city) {
+		this.city = city;
+	}
+
+	public StateBean getState() {
+		return state;
+	}
+
+	public void setState(StateBean state) {
+		this.state = state;
+	}
+
+	public DoctorBean getDoctor() {
+		return doctor;
+	}
+
+	public void setDoctor(DoctorBean doctor) {
+		this.doctor = doctor;
+	}
+
+	public String getDateTime() {
+		return dateTime;
+	}
+
+	public void setDateTime(String dateTime) {
+		this.dateTime = dateTime;
+	}
+
+	public String getReason() {
+		return reason;
+	}
+
+	public void setReason(String reason) {
+		this.reason = reason;
+	}
+
+	public SlotBean getSlot() {
+		return slot;
+	}
+
+	public void setSlot(SlotBean slot) {
+		this.slot = slot;
+	}
+
+	
 }

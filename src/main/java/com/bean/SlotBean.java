@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -23,6 +24,10 @@ public class SlotBean {
 	@ManyToOne
 	@JoinColumn(name = "doctorId",nullable = false)
 	private DoctorBean doctor;
+	
+	@OneToOne(mappedBy = "slot")
+	private AppointmentBean appointment;
+	
 	public UUID getSlotId() {
 		return slotId;
 	}
@@ -46,6 +51,12 @@ public class SlotBean {
 	}
 	public void setDoctor(DoctorBean doctor) {
 		this.doctor = doctor;
+	}
+	public AppointmentBean getAppointment() {
+		return appointment;
+	}
+	public void setAppointment(AppointmentBean appointment) {
+		this.appointment = appointment;
 	}
 	
 	
