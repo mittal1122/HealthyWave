@@ -19,7 +19,7 @@ public class SlotBean {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID slotId;
-	private String slot;
+	private String time;
 	private String date;
 	@ManyToOne
 	@JoinColumn(name = "doctorId",nullable = false)
@@ -34,11 +34,12 @@ public class SlotBean {
 	public void setSlotId(UUID slotId) {
 		this.slotId = slotId;
 	}
-	public String getSlot() {
-		return slot;
+	
+	public String getTime() {
+		return time;
 	}
-	public void setSlot(String slot) {
-		this.slot = slot;
+	public void setTime(String time) {
+		this.time = time;
 	}
 	public String getDate() {
 		return date;
